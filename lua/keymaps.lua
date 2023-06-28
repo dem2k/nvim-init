@@ -19,8 +19,7 @@ vim.keymap.set("n", "<leader>e", ":NeoTreeFloatToggle<cr>", { desc = "Open File 
 vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Toggle wrap lines" })
 vim.keymap.set("n", "<leader>öu", ":w ++enc=utf8 %<cr>", { desc = "Save buffer as UTF-8" })
 vim.keymap.set("n", "<leader>öl", ":w ++enc=iso-8859-15 %<cr>", { desc = "Save buffer as Latin1" })
-vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>",
-  { desc = "Tidy XML" })
+vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>", { desc = "Tidy XML" })
 
 -- show unsichtbare zeichen?
 vim.keymap.set("n", "<leader>öp", ":set invlist<cr>", { desc = "Toggle unseen Signs" })
@@ -31,3 +30,17 @@ vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change clipboard" 
 -- prev/next tab
 vim.keymap.set('n', '<S-Left>', ':bnext<cr>')
 vim.keymap.set('n', '<S-Right>', ':bprev<cr>')
+
+-- vim.keymap.set('n', '<c-v>', 'P')
+
+if vim.g.neovide then
+  -- Put anything you want to happen only in Neovide here
+  vim.opt.guifont = "Hack NF:h12"
+  vim.keymap.set({ 'i', 'c' }, '<c-v>', '<c-r>+', { desc = "CTRL-V isn't map in Neovide" })
+  vim.keymap.set('n', '<c-v>', 'i<c-r>+<esc>l', { desc = "CTRL-V isn't map in Neovide" })
+end
+
+-- move in long lines
+vim.keymap.set("n", "<Up>", "gk", { desc = "Move Cursor up in a long Line" })
+vim.keymap.set("n", "<Down>", "gj", { desc = "Move Cursor down in a long Line" })
+
