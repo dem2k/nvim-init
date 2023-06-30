@@ -45,8 +45,6 @@ vim.opt.relativenumber = true  -- Relative line numbers
 vim.opt.pumheight = 16       -- Maximum number of entries in a popup
 vim.opt.scrolloff = 4        -- Lines of context
 vim.opt.sidescrolloff = 8    -- Columns of context
-vim.opt.shiftround = true    -- Round indent -- >> indents to next multiple of 'shiftwidth'.
-vim.opt.shiftwidth = 2       -- Size of an indent by spaces
 -- vim.opt.shortmess:append({ W = true, I = true, c = true })
 vim.opt.showcmd = true       -- Show command in the command-line  -- vim.cmd [[set showcmd]]  -- Show already typed keys when more are expected.
 vim.opt.showmode = true      -- Show current mode in command-line.
@@ -58,8 +56,10 @@ vim.opt.smartindent = true   -- Insert indents automatically
 vim.opt.splitbelow = true    -- Open new windows below the current window.
 vim.opt.splitright = true    -- Open new windows right of current
 
-vim.opt.tabstop = 2          -- Number of spaces tabs count for
+vim.opt.shiftround = true    -- Round indent -- >> indents to next multiple of 'shiftwidth'.
+vim.opt.tabstop = 4          -- Number of spaces tabs count for
 vim.opt.expandtab = true     -- Use spaces instead of tabs
+vim.opt.shiftwidth = 4       -- Size of an indent by spaces
 vim.opt.softtabstop = 4      -- Set the value of softtabstop -- vim.cmd [[set softtabstop =4]] -- Tab key indents by 4 spaces.
 
 vim.opt.timeout = true
