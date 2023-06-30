@@ -28,8 +28,8 @@ vim.keymap.set("n", "<leader>öp", ":set invlist<cr>", { desc = "Toggle unseen S
 vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change clipboard" })
 
 -- prev/next tab
-vim.keymap.set('n', '<S-Left>', ':bnext<cr>')
-vim.keymap.set('n', '<S-Right>', ':bprev<cr>')
+vim.keymap.set('n', '<S-Left>', ':bprev<cr>')
+vim.keymap.set('n', '<S-Right>', ':bnext<cr>')
 
 -- vim.keymap.set('n', '<c-v>', 'P')
 
