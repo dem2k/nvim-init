@@ -4,6 +4,7 @@ return {
   version = '*',
   config = function()
     require("mini.ai").setup({})
+    -- require("mini.map").setup({}) -- too slow on huge files...
     -- require("mini.animate").setup({})
     require("mini.tabline").setup({})
     require('mini.comment').setup({})
