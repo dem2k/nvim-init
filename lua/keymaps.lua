@@ -28,16 +28,16 @@ vim.keymap.set("n", "<leader>öp", ":set invlist<cr>", { desc = "Toggle unseen S
 vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change clipboard" })
 
 -- prev/next tab
-vim.keymap.set('n', '<S-Left>', ':bprev<cr>')
-vim.keymap.set('n', '<S-Right>', ':bnext<cr>')
+vim.keymap.set("n", "<S-Tab>", ":bprev<cr>")
+vim.keymap.set("n", "<Tab>", ":bnext<cr>")
 
--- vim.keymap.set('n', '<c-v>', 'P')
+-- vim.keymap.set("n", "<c-v>", "P")
 
 if vim.g.neovide then
   -- Put anything you want to happen only in Neovide here
   vim.opt.guifont = "Hack NF:h12"
-  vim.keymap.set({ 'i', 'c' }, '<c-v>', '<c-r>+', { desc = "CTRL-V isn't map in Neovide" })
-  vim.keymap.set('n', '<c-v>', 'i<c-r>+<esc>l', { desc = "CTRL-V isn't map in Neovide" })
+  vim.keymap.set({ "i", "c" }, "<c-v>", "<c-r>+", { desc = "CTRL-V isn't map in Neovide" })
+  vim.keymap.set("n", "<c-v>", "i<c-r>+<esc>l", { desc = "CTRL-V isn't map in Neovide" })
 end
 
 -- move in long lines

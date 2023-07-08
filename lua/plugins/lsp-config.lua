@@ -4,9 +4,9 @@ return {
   -- opt = {}, -- same as require("blabla").setup({}) ?
   dependencies = {
     -- Useful status updates for LSP
-    { 'j-hui/fidget.nvim', opts = {} },
+    { "j-hui/fidget.nvim", opts = {} },
     -- Additional lua configuration, makes nvim stuff amazing!
-    { 'folke/neodev.nvim', opts = {} },
+    { "folke/neodev.nvim", opts = {} },
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -17,26 +17,26 @@ return {
       require("cmp_nvim_lsp").default_capabilities()
     )
 
-    vim.api.nvim_create_autocmd('LspAttach', {
-      desc = 'LSP Actions',
+    vim.api.nvim_create_autocmd("LspAttach", {
+      desc = "LSP Actions",
       callback = function(event)
         vim.lsp.set_log_level("debug")
         local opts = { buffer = event.buf }
         -- lsp keymaps
-        vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', 'gD', ':lua vim.lsp.buf.declaration()<cr>', opts)
-        vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<cr>', opts)
-        vim.keymap.set('n', 'go', ':lua vim.lsp.buf.type_definition()<cr>', opts)
-        vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<cr>', opts)
-        vim.keymap.set('n', 'gl', ':lua vim.diagnostic.open_float()<cr>', opts)
+        vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<cr>", opts)
+        vim.keymap.set("n", "gD", ":lua vim.lsp.buf.declaration()<cr>", opts)
+        vim.keymap.set("n", "gi", ":lua vim.lsp.buf.implementation()<cr>", opts)
+        vim.keymap.set("n", "go", ":lua vim.lsp.buf.type_definition()<cr>", opts)
+        vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<cr>", opts)
+        vim.keymap.set("n", "gl", ":lua vim.diagnostic.open_float()<cr>", opts)
         -- lsp actions
-        vim.keymap.set('n', '<leader>ls', ':lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<leader>lr', ':lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set('n', '<leader>lj', ':lua vim.diagnostic.goto_next()<cr>', opts)
-        vim.keymap.set('n', '<leader>lk', ':lua vim.diagnostic.goto_prev()<cr>', opts)
-        vim.keymap.set("n", "<leader>lh", ":lua vim.lsp.buf.hover()<cr>", { desc = 'Hover Documentation' })
+        vim.keymap.set("n", "<leader>ls", ":lua vim.lsp.buf.signature_help()<cr>", opts)
+        vim.keymap.set("n", "<leader>lr", ":lua vim.lsp.buf.rename()<cr>", opts)
+        vim.keymap.set("n", "<leader>lj", ":lua vim.diagnostic.goto_next()<cr>", opts)
+        vim.keymap.set("n", "<leader>lk", ":lua vim.diagnostic.goto_prev()<cr>", opts)
+        vim.keymap.set("n", "<leader>lh", ":lua vim.lsp.buf.hover()<cr>", { desc = "Hover Documentation" })
         vim.keymap.set("n", "<leader>lf", ":lua vim.lsp.buf.format({})<cr>", { desc = "Format current Buffer" })
-        vim.keymap.set({'n','v'}, '<leader>la', ':lua vim.lsp.buf.code_action()<cr>', { desc = 'Code Action...' })
+        vim.keymap.set({"n","v"}, "<leader>la", ":lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action..." })
       end
     })
 
@@ -72,7 +72,7 @@ return {
     lspconfig.powershell_es.setup({
       -- shell = "powershell.exe",
       -- bundle_path = pwsh_lsp_path,
-      cmd = { vim.env.SCOOP .. '/apps/pwsh/current/pwsh.exe', '-NoLogo', '-NoProfile', '-Command',
+      cmd = { vim.env.SCOOP .. "/apps/pwsh/current/pwsh.exe", "-NoLogo", "-NoProfile", "-Command",
         "& " .. pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
         .. " -BundledModulesPath '" .. pwsh_lsp_path .. "'"
         .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
@@ -134,9 +134,9 @@ return {
 
       -- root_dir = function()
       --   return {
-      --         'pom.xml', -- Maven
-      --         'build.xml', -- Ant
-      --       }          -- Multi-module projects { 'build.gradle', 'build.gradle.kts' },
+      --         "pom.xml", -- Maven
+      --         "build.xml", -- Ant
+      --       }          -- Multi-module projects { "build.gradle", "build.gradle.kts" },
       --       -- or vim.fn.getcwd()
       -- end,
 
@@ -145,10 +145,10 @@ return {
     -- lspconfig.jdtls.setup().find_root({ "pom.xml" })
     -- require("jdtls.setup").find_root({ "pom.xml" })
 
-    -- local cmp = require('cmp')
+    -- local cmp = require("cmp")
     -- cmp.setup({
     --   mapping = {
-    --     ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    --     ["<CR>"] = cmp.mapping.confirm({ select = false }),
     --   }
     -- })
 

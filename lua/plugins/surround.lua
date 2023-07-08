@@ -1,4 +1,4 @@
-if true then return {} end
+-- if true then return {} end
 
 -- https://github.com/kylechui/nvim-surround
 return {

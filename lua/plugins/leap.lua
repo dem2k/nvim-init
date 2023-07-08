@@ -1,8 +1,9 @@
--- if true then return {} end
+if true then return {} end
+
 -- https://github.com/ggandor/leap.nvim
 return {
-  'ggandor/leap.nvim',
+  "ggandor/leap.nvim",
   config = function()
-    require('leap').add_default_mappings()
+    require("leap").add_default_mappings()
   end
 }

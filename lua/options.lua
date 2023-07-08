@@ -9,7 +9,7 @@ vim.opt.clipboard = "unnamedplus"                   -- Sync with system clipboar
 vim.opt.completeopt = { "menu", "menuone", "noselect" } -- https://neovim.io/doc/user/options.html#'completeopt'
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "folds" }
 
--- vim.opt.formatoptions = 'qrn1'
+-- vim.opt.formatoptions = "qrn1"
 -- vim.opt.formatoptions = "jcroqlnt" -- default: tcqj
 -- vim.opt.grepprg = "rg --vimgrep"
 -- vim.opt.grepformat = "%f:%l:%c:%m"
@@ -71,8 +71,8 @@ vim.opt.winminwidth = 8                -- Minimum window width
 -- unsichtbare zeichen?
 -- vim.opt.listchars:append "space:⋅"
 -- vim.opt.listchars:append "eol:↴" -- ¬
--- vim.opt.listchars = 'eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,'
-vim.opt.listchars = 'space:⋅,eol:↴,trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂'
+-- vim.opt.listchars = "eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,"
+vim.opt.listchars = "space:⋅,eol:↴,trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
 
 -- Put all temporary files under the same directory.
 -- vim.cmd[[set undodir     =$HOME/.vim/files/undo/]]

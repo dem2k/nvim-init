@@ -55,7 +55,7 @@ require("lazy").setup({
 --     vim.highlight.on_yank({ timeout = 300 })
 --   end,
 --   group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
---   pattern = '*',
+--   pattern = "*",
 -- })
 
 -- [[ Highlight on yank ]] -- See `:help vim.highlight.on_yank()`

@@ -2,9 +2,9 @@ if true then return {} end
 
 -- https://github.com/numToStr/Comment.nvim
 return {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     config = function()
-        require('Comment').setup()
+        require("Comment").setup()
     end
 }
 

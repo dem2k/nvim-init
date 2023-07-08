@@ -1,9 +1,9 @@
 if true then return {} end
 
 return {
-    'justinmk/vim-sneak',
+    "justinmk/vim-sneak",
     config = function()
-        -- require('sneak').setup()
+        -- require("sneak").setup()
     end
 }
 
