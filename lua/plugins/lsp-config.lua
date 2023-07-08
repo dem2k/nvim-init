@@ -72,7 +72,7 @@ return {
     lspconfig.powershell_es.setup({
       -- shell = "powershell.exe",
       -- bundle_path = pwsh_lsp_path,
-      cmd = { 'c:/scoop/apps/pwsh/current/pwsh.exe', '-NoLogo', '-NoProfile', '-Command',
+      cmd = { vim.env.SCOOP .. '/apps/pwsh/current/pwsh.exe', '-NoLogo', '-NoProfile', '-Command',
         "& " .. pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
         .. " -BundledModulesPath '" .. pwsh_lsp_path .. "'"
         .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
