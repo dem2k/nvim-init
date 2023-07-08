@@ -8,10 +8,10 @@ return {
             defaults = {
                 layout_strategy = "horizontal",
                 layout_config = {
-                    height = 0.85,
                     width = 0.95,
+                    height = 0.85,
                     -- preview_cutoff = 120,  --default?
-                    preview_width=0.65,
+                    preview_width = 0.65,
                 },
                 mappings = {
                     i = {
