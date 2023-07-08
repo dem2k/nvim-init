@@ -6,6 +6,13 @@ return {
     config = function()
         require("telescope").setup({
             defaults = {
+                layout_strategy = "horizontal",
+                layout_config = {
+                    height = 0.85,
+                    width = 0.95,
+                    -- preview_cutoff = 120,  --default?
+                    preview_width=0.65,
+                },
                 mappings = {
                     i = {
                         ["<C-u>"] = false,
@@ -15,7 +22,7 @@ return {
             },
             extensions = {
                 ["ui-select"] = {
-                    require("telescope.themes").get_dropdown {
+                    require("telescope.themes").get_cursor {
                         -- even more opts
                     },
 
