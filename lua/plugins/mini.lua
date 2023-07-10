@@ -29,13 +29,13 @@ return {
         -- Move visual selection in Visual mode.
         left = "<M-Left>",
         right = "<M-Right>",
-        down = "<M-Down>",
         up = "<M-Up>",
+        down = "<M-Down>",
         -- Move current line in Normal mode
         line_left = "<M-Left>",
         line_right = "<M-Right>",
-        line_down = "<M-Down>",
         line_up = "<M-Up>",
+        line_down = "<M-Down>",
       },
       options = {
         -- Automatically reindent selection during linewise vertical move
