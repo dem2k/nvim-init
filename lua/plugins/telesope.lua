@@ -61,7 +61,7 @@ return {
         vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "Help Tags" })
         vim.keymap.set("n", "<leader>fw", require("telescope.builtin").grep_string, { desc = "Current Word in Files" })
         vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Live Grep" })
-        --vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
+        vim.keymap.set("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "Diagnostics" })
         vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "Files" })
         vim.keymap.set("n", "<leader>gc", require("telescope.builtin").git_commits, { desc = "Commits" })
         vim.keymap.set("n", "<leader>gb", require("telescope.builtin").git_branches, { desc = "Branches" })

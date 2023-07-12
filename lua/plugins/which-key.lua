@@ -6,7 +6,7 @@ return {
       require("which-key").register({
         ö = { name = "My Commands..." },
         s = { name = "Search..." },
-        f = { name = "Find with Telescope..." },
+        f = { name = "Telescope..." },
         g = { name = "Git..." },
         l = { name = "Language server..." },
         --    t = { name = "Telescope..." },
