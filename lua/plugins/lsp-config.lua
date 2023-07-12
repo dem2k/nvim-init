@@ -115,7 +115,8 @@ return {
         --
         "-jar", jdtls_launcher,
         "-configuration", jdtls_config,
-        "-data", (vim.fs.dirname(vim.fs.find({"pom.xml"}, { upward = true })[1]) or vim.fn.getcwd()) .. "/.jdtls"
+        -- "-data", (vim.fs.dirname(vim.fs.find({"pom.xml"}, { upward = true })[1]) or vim.fn.getcwd()) .. "/.jdtls"
+        "-data", vim.env.temp .. "/.jdtls"
       },
       settings = {
         java = {
