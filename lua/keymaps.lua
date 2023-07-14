@@ -34,13 +34,16 @@ vim.keymap.set("n", "<Tab>", ":bnext<cr>")
 -- vim.keymap.set("n", "<c-v>", "P")
 
 if vim.g.neovide then
-  -- Put anything you want to happen only in Neovide here
-  vim.opt.guifont = "Hack NF:h12"
-  vim.keymap.set({ "i", "c" }, "<c-v>", "<c-r>+", { desc = "CTRL-V isn't map in Neovide" })
-  vim.keymap.set("n", "<c-v>", "i<c-r>+<esc>l", { desc = "CTRL-V isn't map in Neovide" })
+    -- Put anything you want to happen only in Neovide here
+    vim.opt.guifont = "Hack NF:h12"
+    vim.keymap.set({ "i", "c" }, "<c-v>", "<c-r>+", { desc = "CTRL-V isn't map in Neovide" })
+    vim.keymap.set("n", "<c-v>", "i<c-r>+<esc>l", { desc = "CTRL-V isn't map in Neovide" })
 end
 
 -- move in long lines
 vim.keymap.set("n", "<Up>", "gk", { desc = "Move Cursor up in a long Line" })
 vim.keymap.set("n", "<Down>", "gj", { desc = "Move Cursor down in a long Line" })
+
+-- vv aktiviert Lineweise selektieren
+vim.keymap.set("n", "vv", "V")
 
