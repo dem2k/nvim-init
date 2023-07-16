@@ -30,6 +30,7 @@ vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change clipboard" 
 -- prev/next tab
 vim.keymap.set("n", "<S-Tab>", ":bprev<cr>")
 vim.keymap.set("n", "<Tab>", ":bnext<cr>")
+vim.keymap.set("n", "<leader>b", ":b#<cr>",{desc="switch to prev buffer"})
 
 -- vim.keymap.set("n", "<c-v>", "P")
 
