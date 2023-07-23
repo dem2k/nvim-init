@@ -30,6 +30,8 @@ vim.opt.swapfile = false    -- Disable swap file -- vim.cmd [[set noswapfile]]
 -- vim.opt.undofile = true
 -- vim.opt.undolevels = 1000    -- default 1000.
 -- vim.opt.updatetime = 5000    -- Save swap file and trigger CursorHold
+vim.opt.hidden = true
+vim.opt.autowriteall = true
 
 -- vim.opt.conceallevel = 3     -- Hide * markup for bold and italic?
 vim.opt.confirm = true         -- Confirm to save changes before exiting modified buffer
@@ -72,7 +74,7 @@ vim.opt.winminwidth = 8                -- Minimum window width
 -- vim.opt.listchars:append "space:⋅"
 -- vim.opt.listchars:append "eol:↴" -- ¬
 -- vim.opt.listchars = "eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,"
-vim.opt.listchars = "space:⋅,eol:↴,trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
+vim.opt.listchars = "space:⋅,eol:↴,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂"
 
 -- Put all temporary files under the same directory.
 -- vim.cmd[[set undodir     =$HOME/.vim/files/undo/]]
