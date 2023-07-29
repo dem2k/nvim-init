@@ -111,7 +111,7 @@ return {
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
         --
-        "-javaagent:" .. vim.env.HOME .. "/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar",
+        "-javaagent:" .. jdtls_home .. "/lombok.jar",
         --
         "-jar", jdtls_launcher,
         "-configuration", jdtls_config,
