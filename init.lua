@@ -3,9 +3,10 @@
 vim.g.mapleader          = " "
 vim.g.maplocalleader     = " "
 
--- nvim-tree: disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw       = 1
-vim.g.loaded_netrwPlugin = 1
+-- disable some plugins and providers we dont need.
+vim.g.loaded_netrw         = 1
+vim.g.loaded_netrwPlugin   = 1
+vim.g.loaded_perl_provider = 0
 
 -- netrw settings like NERDtree
 vim.g.netrw_banner       = 1
