@@ -9,7 +9,7 @@ return {
         f = { name = "Telescope..." },
         g = { name = "Git..." },
         l = { name = "Language server..." },
-        --    t = { name = "Telescope..." },
+        t = { name = "Terminal..." },
       }, { prefix = "<leader>" })
     })
   end,
