@@ -90,7 +90,8 @@ return {
     -- java
     local jdtls_home = vim.fn.stdpath("data") .. "/lsp/java"
     local jdtls_config = jdtls_home .. "/config_win"
-    local jdtls_launcher = jdtls_home .. "/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar"
+    local jdtls_launcher = jdtls_home .. "/plugins/"
+            .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar")
     lspconfig.jdtls.setup {
       cmd = {
         --
