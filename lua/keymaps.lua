@@ -1,6 +1,6 @@
 -- scroll window
-vim.keymap.set("n", "<C-Up>", "<C-Y>", { desc = "Scroll window up" })
-vim.keymap.set("n", "<C-Down>", "<C-E>", { desc = "Scroll window down" })
+vim.keymap.set("n", "<C-Up>", "<C-Y>", { desc = "Scroll Window up" })
+vim.keymap.set("n", "<C-Down>", "<C-E>", { desc = "Scroll Window down" })
 
 -- -- Move Lines (use mini.move.  https://github.com/echasnovski/mini.nvim/)
 -- vim.keymap.set("n", "<A-Up>", "<cmd>m .-2<cr>==", { desc = "Move line up" })
@@ -11,21 +11,22 @@ vim.keymap.set("n", "<C-Down>", "<C-E>", { desc = "Scroll window down" })
 -- vim.keymap.set("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
 
 -- ctrl-s to save file
-vim.keymap.set("n", "<c-s>", "<cmd>w<cr>", { desc = "save buffer" })
-vim.keymap.set("i", "<c-s>", "<esc><cmd>w<cr>a", { desc = "save buffer" })
+vim.keymap.set("n", "<c-s>", "<cmd>w<cr>", { desc = "Save Buffer" })
+vim.keymap.set("i", "<c-s>", "<esc><cmd>w<cr>a", { desc = "Save Buffer" })
 
 -- vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume" })
-vim.keymap.set("n", "<leader>e", ":NeoTreeFloatToggle<cr>", { desc = "Open File Explorer" })
-vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Toggle wrap lines" })
-vim.keymap.set("n", "<leader>öu", ":w ++enc=utf8 %<cr>", { desc = "Save buffer as UTF-8" })
-vim.keymap.set("n", "<leader>öl", ":w ++enc=iso-8859-15 %<cr>", { desc = "Save buffer as Latin1" })
+vim.keymap.set("n", "<leader>e",  ":NeoTreeFloatToggle<cr>", { desc = "Open File Explorer" })
+vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Toggle wrap Lines" })
+vim.keymap.set("n", "<leader>öu", ":w ++enc=utf8 %<cr>", { desc = "Save Buffer as UTF-8" })
+vim.keymap.set("n", "<leader>öl", ":w ++enc=iso-8859-15 %<cr>", { desc = "Save Buffer as Latin1" })
+vim.keymap.set("n", "<leader>öy", ':let @+ = @"<cr>', { desc = "Put yanked Text into System Clipboard" })
 vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>", { desc = "Tidy XML" })
 
 -- show unsichtbare zeichen?
 vim.keymap.set("n", "<leader>öp", ":set invlist<cr>", { desc = "Toggle unseen Signs" })
 
 -- x löscht nicht ins clipboard
-vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change clipboard" })
+vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change Clipboard" })
 
 -- prev/next tab
 vim.keymap.set("n", "<S-Tab>", ":bprev<cr>",{desc="Previous Tab"})
@@ -49,5 +50,5 @@ vim.keymap.set("n", "<Down>", "gj", { desc = "Move Cursor down in a long Line" }
 vim.keymap.set("n", "vv", "V")
 
 -- 
-vim.keymap.set("n", "<leader>n", ":%s///gn<cr>",{desc="Count Search matches"})
+vim.keymap.set("n", "<leader>n", ":%s///gn<cr>",{desc="Count search Matches"})
 
