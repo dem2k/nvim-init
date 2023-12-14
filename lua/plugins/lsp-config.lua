@@ -74,7 +74,11 @@ return {
             -- shell = "powershell.exe",
             -- bundle_path = pwsh_lsp_path,
             settings = {
-                powershell = { scriptAnalysis = { settingsPath = pwsh_lsp_path .. "/PSScriptAnalyzerSettings.psd1" } } },
+                powershell = {
+                    codeFormatting = { Preset = 'OTBS' },
+                    scriptAnalysis = { settingsPath = pwsh_lsp_path .. "/PSScriptAnalyzerSettings.psd1" },
+                }
+            },
             cmd = { vim.env.SCOOP .. "/apps/pwsh/current/pwsh.exe", "-NoLogo", "-NoProfile", "-Command",
                 "& " .. pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
                 .. " -BundledModulesPath '" .. pwsh_lsp_path .. "'"
@@ -87,6 +91,9 @@ return {
             },
             root_dir = function(fname)
                 return lspconfig.util.root_pattern(".git")(fname) or vim.fn.getcwd()
+            end,
+            on_attach =  function(client, bufnr)
+                vim.keymap.set('n', '<Leader>r',":w | !powershell.exe ./%<cr>", { buffer = bufnr, desc = "Save and Run Powershell."})
             end
         }) -- end powershell
 
