@@ -19,7 +19,9 @@ vim.keymap.set("n", "<leader>e",  ":NeoTreeFloatToggle<cr>", { desc = "Open File
 vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Toggle wrap Lines" })
 vim.keymap.set("n", "<leader>öu", ":w ++enc=utf8 %<cr>", { desc = "Save Buffer as UTF-8" })
 vim.keymap.set("n", "<leader>öl", ":w ++enc=iso-8859-15 %<cr>", { desc = "Save Buffer as Latin1" })
-vim.keymap.set("n", "<leader>öy", ':let @+ = @"<cr>', { desc = "Put yanked Text into System Clipboard" })
+-- vim.keymap.set("n", "<leader>öy", ':let @+ = @"<cr>', { desc = "Put yanked Text into System Clipboard" })
+-- vim.keymap.set("n", "<leader>öc", ':let @" = @+<cr>', { desc = "Put System Clipboard into unnamed Register" })
+vim.keymap.set("n", "<leader>öv", ':let @a=@+ | let @+=@" | let @"=@a<cr>', { desc = "Swap System Clipboard and Yank Register" })
 vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>", { desc = "Tidy XML" })
 
 -- show unsichtbare zeichen?
