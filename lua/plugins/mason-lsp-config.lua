@@ -1,14 +1,17 @@
--- https://github.com/neovim/nvim-lspconfig
+-- if true then return {} end
+
 return {
     "neovim/nvim-lspconfig",
-    -- opt = {}, -- same as require("blabla").setup({}) ?
     dependencies = {
-        -- Useful status updates for LSP
-        { "j-hui/fidget.nvim", opts = {} },
-        -- Additional lua configuration, makes nvim stuff amazing!
-        { "folke/neodev.nvim", opts = {} },
+        { "williamboman/mason.nvim",           opts = {} },
+        { "williamboman/mason-lspconfig.nvim", opts = {} },
+        { "j-hui/fidget.nvim",                 opts = {} }, -- Useful status updates for LSP
+        { "folke/neodev.nvim",                 opts = {} }, -- Additional lua configuration, makes nvim stuff amazing!
     },
     config = function()
+        require("mason").setup()
+        require("mason-lspconfig").setup()
+
         local lspconfig = require("lspconfig")
         local lspdefault = lspconfig.util.default_config
 
@@ -69,7 +72,7 @@ return {
         })
 
         -- powershell
-        local pwsh_lsp_path = vim.fn.stdpath("data") .. "/lsp/powershell"
+        local pwsh_lsp_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
         lspconfig.powershell_es.setup({
             -- shell = "powershell.exe",
             -- bundle_path = pwsh_lsp_path,
@@ -92,16 +95,17 @@ return {
             root_dir = function(fname)
                 return lspconfig.util.root_pattern(".git")(fname) or vim.fn.getcwd()
             end,
-            on_attach =  function(client, bufnr)
-                vim.keymap.set('n', '<Leader>r',":w | !powershell.exe ./%<cr>", { buffer = bufnr, desc = "Save and Run Powershell."})
+            on_attach = function(client, bufnr)
+                vim.keymap.set('n', '<Leader>r', ":w | !powershell.exe ./%<cr>",
+                    { buffer = bufnr, desc = "Save and Run Powershell." })
             end
         }) -- end powershell
 
-        -- java
-        local jdtls_home = vim.fn.stdpath("data") .. "/lsp/java"
+           -- java
+        local jdtls_home = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
         local jdtls_config = jdtls_home .. "/config_win"
         local jdtls_launcher = jdtls_home .. "/plugins/"
-            .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar")
+            .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
         lspconfig.jdtls.setup {
             cmd = {
                 --
@@ -164,6 +168,5 @@ return {
         --   }
         -- })
 
-        -- end config function
-    end,
+    end
 }
