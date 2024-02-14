@@ -103,7 +103,7 @@ return {
         }) -- end powershell
 
         -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
-        local jdtls_home = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
+        local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
         local jdtls_config = jdtls_home .. "/config_win"
         local jdtls_launcher = jdtls_home .. "/plugins/"
             .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
