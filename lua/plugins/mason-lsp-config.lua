@@ -79,7 +79,7 @@ return {
             settings = {
                 powershell = {
                     codeFormatting = { Preset = 'OTBS' },
-                    scriptAnalysis = { settingsPath = pwsh_lsp_path .. "/PSScriptAnalyzerSettings.psd1" },
+                    scriptAnalysis = { settingsPath = vim.fn.stdpath("data") .. "/PSScriptAnalyzerSettings.psd1" },
                 }
             },
             cmd = { vim.env.SCOOP .. "/apps/pwsh/current/pwsh.exe", "-NoLogo", "-NoProfile", "-Command",
@@ -102,7 +102,7 @@ return {
             end
         }) -- end powershell
 
-           -- java
+        -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
         local jdtls_home = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
         local jdtls_config = jdtls_home .. "/config_win"
         local jdtls_launcher = jdtls_home .. "/plugins/"
