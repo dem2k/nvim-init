@@ -83,7 +83,8 @@ return {
                 }
             },
             cmd = { vim.env.SCOOP .. "/apps/pwsh/current/pwsh.exe", "-NoLogo", "-NoProfile", "-Command",
-                "& " .. pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
+                -- "& " ..
+                pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
                 .. " -BundledModulesPath '" .. pwsh_lsp_path .. "'"
                 .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
                 .. " -SessionDetailsPath '" .. vim.fn.stdpath("data") .. "/powershell.session.json'"
