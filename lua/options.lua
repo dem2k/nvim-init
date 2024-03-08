@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------------
-vim.cmd("language en_US")  --  vim.opt.language = "en_US"              -- Set the language option
+vim.cmd("language en_US")  -- vim.opt.language = "en_US"              -- Set the language option
 vim.opt.compatible = false -- Disable compatibility mode. You want Vim, not vi. We set it explicitely to make our position clear!
 vim.cmd [[filetype plugin indent on]]   -- Load plugins according to detected filetype.
 
@@ -37,7 +37,8 @@ vim.opt.autowriteall = true    -- save all buffers when closing vim and hopping 
 vim.opt.confirm = true         -- Confirm to save changes before exiting modified buffer
 vim.opt.cursorline = true      -- Enable highlighting of the current line
 vim.opt.ignorecase = true      -- Ignore case
-vim.opt.inccommand = "nosplit" -- preview incremental substitute
+vim.opt.inccommand = "split"   -- preview incremental substitute
+
 -- vim.opt.laststatus = 0
 vim.opt.mouse = "a"            -- Enable mouse mode
 vim.opt.number = true          -- Print line number
@@ -53,6 +54,7 @@ vim.opt.showmode = true        -- Show current mode in command-line.
 vim.opt.signcolumn = "yes:2"   -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.smartcase = true       -- Don't ignore case with capitals
 vim.opt.autoindent = true      -- Enable auto-indentation -- vim.cmd [[set autoindent]]     -- Indent according to previous line.
+vim.opt.breakindent = true     -- Enable break indent
 vim.opt.smartindent = true     -- Insert indents automatically
 -- vim.opt.spelllang = { "en" }
 vim.opt.splitbelow = true      -- Open new windows below the current window.
@@ -74,6 +76,7 @@ vim.opt.winminwidth = 8                -- Minimum window width
 -- vim.opt.listchars:append "space:⋅"
 -- vim.opt.listchars:append "eol:↴" -- ¬
 -- vim.opt.listchars = "eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,"
+-- vim.opt.list = true --  See :help 'list' and :help 'listchars'
 vim.opt.listchars = "space:⋅,eol:↴,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂"
 
 -- Put all temporary files under the same directory.
