@@ -21,26 +21,34 @@ return {
         )
 
         vim.api.nvim_create_autocmd("LspAttach", {
+            -- group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
             desc = "LSP Actions",
             callback = function(event)
-                vim.lsp.set_log_level("debug")
-                local opts = { buffer = event.buf }
-                -- lsp keymaps
-                vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<cr>", opts)
-                vim.keymap.set("n", "gD", ":lua vim.lsp.buf.declaration()<cr>", opts)
-                vim.keymap.set("n", "gi", ":lua vim.lsp.buf.implementation()<cr>", opts)
-                vim.keymap.set("n", "go", ":lua vim.lsp.buf.type_definition()<cr>", opts)
-                vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<cr>", opts)
-                vim.keymap.set("n", "gl", ":lua vim.diagnostic.open_float()<cr>", opts)
-                -- lsp actions
-                vim.keymap.set("n", "<leader>ls", ":lua vim.lsp.buf.signature_help()<cr>", opts)
-                vim.keymap.set("n", "<leader>lr", ":lua vim.lsp.buf.rename()<cr>", opts)
-                vim.keymap.set("n", "<leader>lj", ":lua vim.diagnostic.goto_next()<cr>", opts)
-                vim.keymap.set("n", "<leader>lk", ":lua vim.diagnostic.goto_prev()<cr>", opts)
-                vim.keymap.set("n", "<leader>lh", ":lua vim.lsp.buf.hover()<cr>", { desc = "Hover Documentation" })
-                vim.keymap.set("n", "<leader>lf", ":lua vim.lsp.buf.format({})<cr>", { desc = "Format current Buffer" })
-                vim.keymap.set({ "n", "v" }, "<leader>la", ":lua vim.lsp.buf.code_action()<cr>",
-                    { desc = "Code Action..." })
+                -- vim.lsp.set_log_level("debug")
+                local keymap = function(keys, func, desc)
+                    vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+                end
+                    
+                keymap("gD", ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration")
+                -- keymap("gd", ":lua vim.lsp.buf.definition()<cr>", "Goto Definition")
+                keymap("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
+                -- keymap("gI", ":lua vim.lsp.buf.implementation()<cr>", "Goto Implementation")
+                keymap("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
+                -- keymap("gr", ":lua vim.lsp.buf.references()<cr>", "Goto References")
+                keymap("gr", require("telescope.builtin").lsp_references, "Goto References")
+                -- keymap("go", ":lua vim.lsp.buf.type_definition()<cr>", "Type Definition")
+                keymap("<leader>lo", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+                keymap("<leader>ls", ":lua vim.lsp.buf.signature_help()<cr>", "Signature Help")
+                keymap("<leader>lr", ":lua vim.lsp.buf.rename()<cr>", "Rename")
+                keymap("<leader>lj", ":lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic Message")
+                keymap("<leader>lk", ":lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic Message")
+                keymap('<leader>le', ":lua vim.diagnostic.open_float()<cr>", "Show Diagnostic Error Messages" )
+                keymap('<leader>lq', ":lua vim.diagnostic.setloclist()<cr>", "Open Diagnostic Quickfix List" )
+                keymap("<leader>lh", ":lua vim.lsp.buf.hover()<cr>",  "Hover Documentation" )
+                keymap("<leader>lf", ":lua vim.lsp.buf.format({})<cr>",  "Format current Buffer" )
+                keymap("<leader>ld", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
+                keymap("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
+                vim.keymap.set({ "n", "v" }, "<leader>la", ":lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "Code Action..." })
             end
         })
 
@@ -168,6 +176,5 @@ return {
         --     ["<CR>"] = cmp.mapping.confirm({ select = false }),
         --   }
         -- })
-
     end
 }

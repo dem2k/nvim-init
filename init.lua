@@ -38,8 +38,8 @@ require("lazy").setup({
     lazy = false,
     -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
     -- have outdated releases, which may break your Neovim install.
-    version = false, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
+    -- version = false, -- always use the latest git commit
+    version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = {
     -- install missing plugins on startup. This doesn't increase startup time.
@@ -50,17 +50,11 @@ require("lazy").setup({
   checker = { enabled = false }, -- automatically check for plugin updates
 })
 
--- -- [[ Highlight on yank ]] -- See `:help vim.highlight.on_yank()`
--- vim.api.nvim_create_autocmd("TextYankPost", {
---   callback = function()
---     vim.highlight.on_yank({ timeout = 300 })
---   end,
---   group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
---   pattern = "*",
--- })
-
 -- [[ Highlight on yank ]] -- See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+vim.api.nvim_create_autocmd("TextYankPost", {
+--  pattern = "*",
+--  desc = 'Highlight when yanking (copying) text',
+--  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank { timeout = 300 }
   end,
