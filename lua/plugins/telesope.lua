@@ -11,7 +11,7 @@ return {
                     width = 0.95,
                     height = 0.85,
                     -- preview_cutoff = 120,  --default?
-                    preview_width = 0.65,
+                    -- preview_width = 0.65,
                 },
                 mappings = {
                     i = {
@@ -46,13 +46,11 @@ return {
         require("telescope").load_extension("ui-select")
 
         -- See `:help telescope.builtin`
-        vim.keymap.set("n", "<leader>/", function()
-            -- You can pass additional configuration to telescope to change theme, layout, etc.
-            require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-                winblend = 10,
-                previewer = false,
-            })
-        end, { desc = "Fuzzily search in current Buffer" })
+        vim.keymap.set("n", "<leader>?", function()
+            require("telescope.builtin").current_buffer_fuzzy_find(
+                require("telescope.themes").get_dropdown { previewer = false, }
+            )
+        end, { desc = "Fuzzy Find in current Buffer" })
 
         local telescope_builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>fb", telescope_builtin.builtin, { desc = "Built-in Pickers" })
@@ -69,6 +67,5 @@ return {
         vim.keymap.set('n', '<leader>fk', telescope_builtin.keymaps, { desc = 'Search [K]eymaps' })
         vim.keymap.set('n', '<leader>fr', telescope_builtin.resume, { desc = 'Search [R]esume' })
         vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "Existing Buffers" })
-
     end,
 }
