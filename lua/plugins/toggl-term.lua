@@ -7,7 +7,7 @@ return {
         require("toggleterm").setup({})
         local Terminal = require("toggleterm.terminal").Terminal
 
-        local pwsh  = Terminal:new({
+        local pwsh     = Terminal:new({
             cmd = "pwsh.exe",
             direction = "tab",
             float_opts = {
@@ -33,6 +33,7 @@ return {
             },
             -- function to run on opening the terminal
             on_open = function(term)
+                vim.cmd(":wall")
                 vim.cmd("startinsert!")
             end,
             -- function to run on closing the terminal
