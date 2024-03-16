@@ -28,7 +28,7 @@ return {
                 local keymap = function(keys, func, desc)
                     vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
                 end
-                    
+
                 keymap("gD", ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration")
                 -- keymap("gd", ":lua vim.lsp.buf.definition()<cr>", "Goto Definition")
                 keymap("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
