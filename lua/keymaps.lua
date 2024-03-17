@@ -24,8 +24,8 @@ vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml 
 
 vim.keymap.set("n", "<leader>ösu", ":set fileencoding=UTF-8 | write<cr>", { desc = "Save Buffer as UTF-8" })
 vim.keymap.set("n", "<leader>ösl", ":set fileencoding=ISO-8859-15 | write<cr>", { desc = "Save Buffer as ISO-8859-15" })
-vim.keymap.set("n", "<leader>ösd", ":set ff=dos | write<cr>", { desc = "Change Line Encoding to DOS" })
-vim.keymap.set("n", "<leader>ösx", ":set ff=unix | write<cr>", { desc = "Change Line Encoding to UNIX" })
+vim.keymap.set("n", "<leader>ösd", ":set ff=dos | write<cr>", { desc = "Change Line Endings to DOS" })
+vim.keymap.set("n", "<leader>ösx", ":set ff=unix | write<cr>", { desc = "Change Line Endings to UNIX" })
 
 -- show unsichtbare zeichen?
 vim.keymap.set("n", "<leader>öp", ":set invlist<cr>", { desc = "Toggle show/hide all Characters" })
