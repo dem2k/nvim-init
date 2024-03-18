@@ -54,6 +54,12 @@ vim.keymap.set("n", "<Down>", "gj", { desc = "Move Cursor down in a long Line" }
 -- vv aktiviert Lineweise selektieren
 vim.keymap.set("n", "vv", "V")
 
+-- i mostly use this with iw...
+vim.keymap.set("n", "cw", "ciw")
+vim.keymap.set("n", "vw", "viw")
+vim.keymap.set("n", "yw", "yiw")
+vim.keymap.set("n", "dw", "diw")
+
 -- 
 vim.keymap.set("n", "<leader>n", ":%s///gn<cr>",{desc="Count search Matches"})
 
