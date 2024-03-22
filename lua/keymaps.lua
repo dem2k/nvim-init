@@ -22,10 +22,10 @@ vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Toggle wrap Lin
 vim.keymap.set("n", "<leader>öö", ':let @a=@+ | let @+=@" | let @"=@a<cr>', { desc = "Swap System Clipboard and Yank Register" })
 vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>", { desc = "Tidy XML" })
 
-vim.keymap.set("n", "<leader>ösu", ":set fileencoding=UTF-8 | write<cr>", { desc = "Save Buffer as UTF-8" })
-vim.keymap.set("n", "<leader>ösl", ":set fileencoding=ISO-8859-15 | write<cr>", { desc = "Save Buffer as ISO-8859-15" })
-vim.keymap.set("n", "<leader>ösd", ":set ff=dos | write<cr>", { desc = "Change Line Endings to DOS" })
-vim.keymap.set("n", "<leader>ösx", ":set ff=unix | write<cr>", { desc = "Change Line Endings to UNIX" })
+vim.keymap.set("n", "<leader>su", ":set fileencoding=UTF-8 | write<cr>", { desc = "Save Buffer as UTF-8" })
+vim.keymap.set("n", "<leader>sl", ":set fileencoding=ISO-8859-15 | write<cr>", { desc = "Save Buffer as ISO-8859-15" })
+vim.keymap.set("n", "<leader>sd", ":set ff=dos | write<cr>", { desc = "Change Line Endings to DOS" })
+vim.keymap.set("n", "<leader>sx", ":set ff=unix | write<cr>", { desc = "Change Line Endings to UNIX" })
 
 -- show unsichtbare zeichen?
 vim.keymap.set("n", "<leader>öp", ":set invlist<cr>", { desc = "Toggle show/hide all Characters" })
@@ -34,9 +34,12 @@ vim.keymap.set("n", "<leader>öp", ":set invlist<cr>", { desc = "Toggle show/hid
 vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change Clipboard" })
 
 -- prev/next tab
-vim.keymap.set("n", "<S-Tab>", ":bprev<cr>",{desc="Previous Tab"})
 vim.keymap.set("n", "<Tab>", ":bnext<cr>",{desc="Next Tab"})
-vim.keymap.set("n", "<leader>b", ":b#<cr>",{desc="Last opened Buffer"})
+vim.keymap.set("n", "<S-Tab>", ":bprev<cr>",{desc="Previous Tab"})
+vim.keymap.set("n", "<leader>bn", ":bnext<cr>",{desc="Next Tab"})
+vim.keymap.set("n", "<leader>bp", ":bprev<cr>",{desc="Previous Tab"})
+vim.keymap.set("n", "<leader>bb", ":b#<cr>",{desc="Last opened Buffer"})
+vim.keymap.set("n", "<leader>bd", ":bdelete<cr>",{desc="Delete current Buffer"})
 
 -- vim.keymap.set("n", "<c-v>", "P")
 
