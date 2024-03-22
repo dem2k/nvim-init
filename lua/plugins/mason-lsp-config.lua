@@ -26,7 +26,7 @@ return {
             callback = function(event)
                 -- vim.lsp.set_log_level("debug")
                 local keymap = function(keys, func, desc)
-                    vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+                    vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
 
                 keymap("gD", ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration")
@@ -48,7 +48,7 @@ return {
                 keymap("<leader>lf", ":lua vim.lsp.buf.format({})<cr>",  "Format current Buffer" )
                 keymap("<leader>ld", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
                 keymap("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
-                vim.keymap.set({ "n", "v" }, "<leader>la", ":lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "Code Action..." })
+                vim.keymap.set({ "n", "v" }, "<leader>la", ":lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "LSP: Code Action..." })
             end
         })
 
