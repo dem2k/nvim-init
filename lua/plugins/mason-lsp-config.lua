@@ -7,6 +7,7 @@ return {
         { "williamboman/mason-lspconfig.nvim", opts = {} },
         { "j-hui/fidget.nvim",                 opts = {} }, -- Useful status updates for LSP
         { "folke/neodev.nvim",                 opts = {} }, -- Additional lua configuration, makes nvim stuff amazing!
+        { "mfussenegger/nvim-jdtls",            }, 
     },
     config = function()
         require("mason").setup()
@@ -22,7 +23,7 @@ return {
 
         vim.api.nvim_create_autocmd("LspAttach", {
             -- group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-            desc = "LSP Actions",
+            desc = "xxx-todo-desc-xxx",
             callback = function(event)
                 -- vim.lsp.set_log_level("debug")
                 local keymap = function(keys, func, desc)
@@ -30,25 +31,35 @@ return {
                 end
 
                 keymap("gD", ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration")
-                -- keymap("gd", ":lua vim.lsp.buf.definition()<cr>", "Goto Definition")
-                keymap("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
-                -- keymap("gI", ":lua vim.lsp.buf.implementation()<cr>", "Goto Implementation")
-                keymap("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
-                -- keymap("gr", ":lua vim.lsp.buf.references()<cr>", "Goto References")
-                keymap("gr", require("telescope.builtin").lsp_references, "Goto References")
-                -- keymap("go", ":lua vim.lsp.buf.type_definition()<cr>", "Type Definition")
-                keymap("<leader>lo", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+                -- keymap("gD", require("telescope.builtin").declaration, "Goto Declaration")
+                keymap("gd", ":lua vim.lsp.buf.definition()<cr>", "Goto Definition")
+                -- keymap("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
+                keymap("gI", ":lua vim.lsp.buf.implementation()<cr>", "Goto Implementation")
+                -- keymap("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
+                keymap("gr", ":lua vim.lsp.buf.references()<cr>", "Goto References")
+                -- keymap("gr", require("telescope.builtin").lsp_references, "Goto References")
+                keymap("go", ":lua vim.lsp.buf.type_definition()<cr>", "Type Definition")
+                -- keymap("go", require("telescope.builtin").lsp_type_definitions, "Type Definition")
                 keymap("<leader>ls", ":lua vim.lsp.buf.signature_help()<cr>", "Signature Help")
+                -- keymap("<leader>ls", require("telescope.builtin").signature_help, "Signature Help")
                 keymap("<leader>lr", ":lua vim.lsp.buf.rename()<cr>", "Rename")
+                -- keymap("<leader>lr", require("telescope.builtin").rename, "Rename")
                 keymap("<leader>lj", ":lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic Message")
+                -- keymap("<leader>lj", require("telescope.builtin").diagnostics.goto_next, "Next Diagnostic Message")
                 keymap("<leader>lk", ":lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic Message")
+                -- keymap("<leader>lk", require("telescope.builtin").diagnostic.goto_prev , "Previous Diagnostic Message")
                 keymap('<leader>le', ":lua vim.diagnostic.open_float()<cr>", "Show Diagnostic Error Messages" )
+                -- keymap('<leader>le', require("telescope.builtin").diagnostic.open_float, "Show Diagnostic Error Messages" )
                 keymap('<leader>lq', ":lua vim.diagnostic.setloclist()<cr>", "Open Diagnostic Quickfix List" )
+                -- keymap('<leader>lq', require("telescope.builtin").diagnostic.setloclist, "Open Diagnostic Quickfix List" )
                 keymap("<leader>lh", ":lua vim.lsp.buf.hover()<cr>",  "Hover Documentation" )
+                -- keymap("<leader>lh", require("telescope.builtin").hover,  "Hover Documentation" )
                 keymap("<leader>lf", ":lua vim.lsp.buf.format({})<cr>",  "Format current Buffer" )
+                -- keymap("<leader>lf", require("telescope.builtin").format,  "Format current Buffer" )
                 keymap("<leader>ld", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
                 keymap("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
-                vim.keymap.set({ "n", "v" }, "<leader>la", ":lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "LSP: Code Action..." })
+                vim.keymap.set({ "n", "v" }, "<leader>ll", ":lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "LSP: Code Action..." })
+                -- vim.keymap.set({ "n", "v" }, "<leader>ll", require("telescope.builtin").code_action, { buffer = event.buf, desc = "LSP: Code Action..." })
             end
         })
 
@@ -110,71 +121,71 @@ return {
             end
         }) -- end powershell
 
-        -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
-        local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
-        local jdtls_config = jdtls_home .. "/config_win"
-        local jdtls_launcher = jdtls_home .. "/plugins/"
-            .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
-        lspconfig.jdtls.setup {
-            cmd = {
-                --
-                vim.env.JAVA_HOME .. "/bin/java.exe",
-                "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-                "-Dosgi.bundles.defaultStartLevel=4",
-                "-Declipse.product=org.eclipse.jdt.ls.core.product",
-
-                -- " -Dosgi.checkConfiguration=true",
-                -- " -Dosgi.sharedConfiguration.area='c:/users/dkl/appdata/local/nvim-data/lsp/java/config_win'",
-                -- " -Dosgi.sharedConfiguration.area.readOnly=true",
-                -- " -Dosgi.configuration.cascaded=true",
-                -- " -noverify",
-
-                "-Dlog.level=ALL", "-Dlog.protocol=true",
-                "-Xms1g", "-Xmx4g",
-                "--add-modules=ALL-SYSTEM",
-                "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-                "--add-opens", "java.base/java.util=ALL-UNNAMED",
-                --
-                "-javaagent:" .. jdtls_home .. "/lombok.jar",
-                --
-                "-jar", jdtls_launcher,
-                "-configuration", jdtls_config,
-                -- "-data", (vim.fs.dirname(vim.fs.find({"pom.xml"}, { upward = true })[1]) or vim.fn.getcwd()) .. "/.jdtls"
-                "-data", vim.env.temp .. "/.jdtls"
-            },
-            settings = {
-                java = {
-                    home = vim.env.JAVA_HOME,
-                    signatureHelp = { enabled = true },
-                    import = { enabled = true },
-                    rename = { enabled = true },
-                    eclipse = { downloadSources = true, },
-                    maven = { downloadSources = true, },
-
-                }
-            },
-            init_options = {
-                bundles = {}
-            },
-
-            -- root_dir = function()
-            --   return {
-            --         "pom.xml", -- Maven
-            --         "build.xml", -- Ant
-            --       }          -- Multi-module projects { "build.gradle", "build.gradle.kts" },
-            --       -- or vim.fn.getcwd()
-            -- end,
-
-            single_file_support = true,
-        }
-        -- lspconfig.jdtls.setup().find_root({ "pom.xml" })
-        -- require("jdtls.setup").find_root({ "pom.xml" })
-
-        -- local cmp = require("cmp")
-        -- cmp.setup({
-        --   mapping = {
-        --     ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        --   }
-        -- })
+        -- -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
+        -- local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
+        -- local jdtls_config = jdtls_home .. "/config_win"
+        -- local jdtls_launcher = jdtls_home .. "/plugins/"
+        --     .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
+        -- lspconfig.jdtls.setup {
+        --     cmd = {
+        --         --
+        --         vim.env.JAVA_HOME .. "/bin/java.exe",
+        --         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+        --         "-Dosgi.bundles.defaultStartLevel=4",
+        --         "-Declipse.product=org.eclipse.jdt.ls.core.product",
+        --
+        --         -- " -Dosgi.checkConfiguration=true",
+        --         -- " -Dosgi.sharedConfiguration.area='c:/users/dkl/appdata/local/nvim-data/lsp/java/config_win'",
+        --         -- " -Dosgi.sharedConfiguration.area.readOnly=true",
+        --         -- " -Dosgi.configuration.cascaded=true",
+        --         -- " -noverify",
+        --
+        --         "-Dlog.level=ALL", "-Dlog.protocol=true",
+        --         "-Xms1g", "-Xmx4g",
+        --         "--add-modules=ALL-SYSTEM",
+        --         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+        --         "--add-opens", "java.base/java.util=ALL-UNNAMED",
+        --         --
+        --         "-javaagent:" .. jdtls_home .. "/lombok.jar",
+        --         --
+        --         "-jar", jdtls_launcher,
+        --         "-configuration", jdtls_config,
+        --         -- "-data", (vim.fs.dirname(vim.fs.find({"pom.xml"}, { upward = true })[1]) or vim.fn.getcwd()) .. "/.jdtls"
+        --         "-data", vim.env.temp .. "/.jdtls"
+        --     },
+        --     settings = {
+        --         java = {
+        --             home = vim.env.JAVA_HOME,
+        --             signatureHelp = { enabled = true },
+        --             import = { enabled = true },
+        --             rename = { enabled = true },
+        --             eclipse = { downloadSources = true, },
+        --             maven = { downloadSources = true, },
+        --
+        --         }
+        --     },
+        --     init_options = {
+        --         bundles = {}
+        --     },
+        --
+        --     -- root_dir = function()
+        --     --   return {
+        --     --         "pom.xml", -- Maven
+        --     --         "build.xml", -- Ant
+        --     --       }          -- Multi-module projects { "build.gradle", "build.gradle.kts" },
+        --     --       -- or vim.fn.getcwd()
+        --     -- end,
+        --
+        --     single_file_support = true,
+        -- }
+        -- -- lspconfig.jdtls.setup().find_root({ "pom.xml" })
+        -- -- require("jdtls.setup").find_root({ "pom.xml" })
+        --
+        -- -- local cmp = require("cmp")
+        -- -- cmp.setup({
+        -- --   mapping = {
+        -- --     ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        -- --   }
+        -- -- })
     end
 }
