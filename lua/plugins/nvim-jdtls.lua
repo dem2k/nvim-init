@@ -1,12 +1,27 @@
--- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
-local config = {
-    -- The command that starts the language server
+-- if true then return {} end
+
+-- actually using mini.comment, not this plugin
+-- https://github.com/numToStr/Comment.nvim
+return {
+     "mfussenegger/nvim-jdtls",            
+    ft = { "java" },
+    config = function()
+
+             -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
+        local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
+        local jdtls_config = jdtls_home .. "/config_win"
+        local jdtls_launcher = jdtls_home .. "/plugins/"
+            .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
+
+-- This starts a new client & server,
+-- or attaches to an existing client & server depending on the `root_dir`.
+        require('jdtls').start_or_attach({
+      -- The command that starts the language server
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     cmd = {
-        -- 💀
-        'c:/scoop/apps/zulufx11-jdk/current/bin/java.exe', -- or '/path/to/java17_or_newer/bin/java'
-        -- depends on if `java` is in your $PATH env variable and if it points to the right version.
-
+        --   
+       vim.env.JAVA_HOME .. "/bin/java.exe",
+--
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -15,30 +30,17 @@ local config = {
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-
-        "-javaagent:" .. "c:/users/x004123/appdata/local/nvim-data/jdtls-for-java-11" .. "/lombok.jar",
-
-        -- 💀
-        '-jar',
-        'c:/users/x004123/appdata/local/nvim-data/jdtls-for-java-11/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-        -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
-        -- Must point to the                                                     Change this to
-        -- eclipse.jdt.ls installation                                           the actual version
-
-
-        -- 💀
-        '-configuration', 'c:/users/x004123/appdata/local/nvim-data/jdtls-for-java-11/config_win',
-        -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
-        -- Must point to the                      Change to one of `linux`, `win` or `mac`
-        -- eclipse.jdt.ls installation            Depending on your system.
-
-
-        -- 💀
+--
+       "-javaagent:" .. jdtls_home .. "/lombok.jar",
+       "-jar", jdtls_launcher,
+        --   
+        "-configuration", jdtls_config,
+      --   
         -- See `data directory configuration` section in the README
-        '-data', 'w:/1'
+       "-data", vim.env.temp .. "/.jdtls"
     },
 
-    -- 💀
+    --   
     -- This is the default if not provided, you can remove it. Or adjust as needed.
     -- One dedicated LSP server & client will be started per unique root_dir
     root_dir = require('jdtls.setup').find_root({ 'pom.xml', 'mvnw', 'gradlew' }),
@@ -68,8 +70,9 @@ local config = {
         bundles = {}
     },
       --     single_file_support = true,
+
+        })
+    end
 }
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
-require('jdtls').start_or_attach(config)
+
 

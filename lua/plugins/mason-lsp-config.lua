@@ -7,7 +7,7 @@ return {
         { "williamboman/mason-lspconfig.nvim", opts = {} },
         { "j-hui/fidget.nvim",                 opts = {} }, -- Useful status updates for LSP
         { "folke/neodev.nvim",                 opts = {} }, -- Additional lua configuration, makes nvim stuff amazing!
-        { "mfussenegger/nvim-jdtls",            }, 
+        -- { "mfussenegger/nvim-jdtls",            }, 
     },
     config = function()
         require("mason").setup()
@@ -121,71 +121,5 @@ return {
             end
         }) -- end powershell
 
-        -- -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
-        -- local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
-        -- local jdtls_config = jdtls_home .. "/config_win"
-        -- local jdtls_launcher = jdtls_home .. "/plugins/"
-        --     .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
-        -- lspconfig.jdtls.setup {
-        --     cmd = {
-        --         --
-        --         vim.env.JAVA_HOME .. "/bin/java.exe",
-        --         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-        --         "-Dosgi.bundles.defaultStartLevel=4",
-        --         "-Declipse.product=org.eclipse.jdt.ls.core.product",
-        --
-        --         -- " -Dosgi.checkConfiguration=true",
-        --         -- " -Dosgi.sharedConfiguration.area='c:/users/dkl/appdata/local/nvim-data/lsp/java/config_win'",
-        --         -- " -Dosgi.sharedConfiguration.area.readOnly=true",
-        --         -- " -Dosgi.configuration.cascaded=true",
-        --         -- " -noverify",
-        --
-        --         "-Dlog.level=ALL", "-Dlog.protocol=true",
-        --         "-Xms1g", "-Xmx4g",
-        --         "--add-modules=ALL-SYSTEM",
-        --         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-        --         "--add-opens", "java.base/java.util=ALL-UNNAMED",
-        --         --
-        --         "-javaagent:" .. jdtls_home .. "/lombok.jar",
-        --         --
-        --         "-jar", jdtls_launcher,
-        --         "-configuration", jdtls_config,
-        --         -- "-data", (vim.fs.dirname(vim.fs.find({"pom.xml"}, { upward = true })[1]) or vim.fn.getcwd()) .. "/.jdtls"
-        --         "-data", vim.env.temp .. "/.jdtls"
-        --     },
-        --     settings = {
-        --         java = {
-        --             home = vim.env.JAVA_HOME,
-        --             signatureHelp = { enabled = true },
-        --             import = { enabled = true },
-        --             rename = { enabled = true },
-        --             eclipse = { downloadSources = true, },
-        --             maven = { downloadSources = true, },
-        --
-        --         }
-        --     },
-        --     init_options = {
-        --         bundles = {}
-        --     },
-        --
-        --     -- root_dir = function()
-        --     --   return {
-        --     --         "pom.xml", -- Maven
-        --     --         "build.xml", -- Ant
-        --     --       }          -- Multi-module projects { "build.gradle", "build.gradle.kts" },
-        --     --       -- or vim.fn.getcwd()
-        --     -- end,
-        --
-        --     single_file_support = true,
-        -- }
-        -- -- lspconfig.jdtls.setup().find_root({ "pom.xml" })
-        -- -- require("jdtls.setup").find_root({ "pom.xml" })
-        --
-        -- -- local cmp = require("cmp")
-        -- -- cmp.setup({
-        -- --   mapping = {
-        -- --     ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        -- --   }
-        -- -- })
     end
 }
