@@ -3,20 +3,18 @@
 -- actually using mini.comment, not this plugin
 -- https://github.com/numToStr/Comment.nvim
 return {
-     "mfussenegger/nvim-jdtls",            
+    "mfussenegger/nvim-jdtls",            
     ft = { "java" },
     config = function()
+--
+      	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
-        	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-			-- local workspace_dir = vim.env.temp .. "/.jdtls-" .. project_name
-
-             -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
+        -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
         local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
         local jdtls_config = jdtls_home .. "/config_win"
         local jdtls_launcher = jdtls_home .. "/plugins/"
             -- .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
             .. "org.eclipse.equinox.launcher_*.jar"
-             -- .. vim.fn.glob(jdtls_home .. 'org.eclipse.equinox.launcher_*.jar')
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
@@ -51,10 +49,15 @@ return {
     -- One dedicated LSP server & client will be started per unique root_dir
     root_dir = require('jdtls.setup').find_root({ 'pom.xml', 'mvnw', 'gradlew',"build.gradle", "build.gradle.kts" }),
 
-    -- Here you can configure eclipse.jdt.ls specific settings
+   -- Here you can configure eclipse.jdt.ls specific settings
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
     -- for a list of options
     settings = {
+      -- how formatter should work?
+      -- https://github.com/eclipse/eclipse.jdt.ls/wiki/Language-Server-Settings-&-Capabilities#extended-client-capabilities
+      -- example: https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml
+      -- ['java.format.settings.url'] = vim.fn.expand("~/formatter.xml"),
+      -- ['java.format.settings.url'] = "C:/Users/DimitriKleyn/Downloads/eclipse-java-google-style.xml",
         java = {
             home = vim.env.JAVA_HOME,
             signatureHelp = { enabled = true },
@@ -62,27 +65,37 @@ return {
             rename = { enabled = true },
             eclipse = { downloadSources = true, },
             maven = { downloadSources = true, },
-                       completion = {
-            favoriteStaticMembers = {
-              "org.hamcrest.Matchers.*",
-              "org.hamcrest.CoreMatchers.*",
-              "org.hamcrest.MatcherAssert.assertThat",
-              "org.junit.jupiter.api.Assertions.*",
-              "java.util.Objects.requireNonNull",
-              "java.util.Objects.requireNonNullElse",
-              "org.mockito.Mockito.*"
+            completion = {
+                favoriteStaticMembers = {
+                "org.hamcrest.Matchers.*",
+                "org.hamcrest.CoreMatchers.*",
+                "org.hamcrest.MatcherAssert.assertThat",
+                "org.junit.jupiter.api.Assertions.*",
+                "java.util.Objects.requireNonNull",
+                "java.util.Objects.requireNonNullElse",
+                "org.mockito.Mockito.*"
+                },
+                filteredTypes = {
+                "com.sun.*",
+                "io.micrometer.shaded.*",
+                "java.awt.*",
+                "jdk.*",
+                "sun.*",
+                },
+                importOrder = {
+                "java",
+                "javax",
+                "com",
+                "org",
+                },
             },
-            filteredTypes = {
-        "com.sun.*",
-        "io.micrometer.shaded.*",
-        "java.awt.*",
-        "jdk.*",
-        "sun.*",
-      },
-          },
         }
     },
 
+    flags = {
+      allow_incremental_sync = true,
+    },
+ 
     -- Language server `initializationOptions`
     -- You need to extend the `bundles` with paths to jar files
     -- if you want to use additional eclipse.jdt.ls plugins.
@@ -95,8 +108,7 @@ return {
     },
       --     single_file_support = true,
 
-        })
+    }) -- end require-jdt-ls
     end
 }
-
 
