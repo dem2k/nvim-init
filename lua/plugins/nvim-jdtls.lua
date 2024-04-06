@@ -7,11 +7,16 @@ return {
     ft = { "java" },
     config = function()
 
+        	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+			-- local workspace_dir = vim.env.temp .. "/.jdtls-" .. project_name
+
              -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
         local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
         local jdtls_config = jdtls_home .. "/config_win"
         local jdtls_launcher = jdtls_home .. "/plugins/"
-            .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
+            -- .. (vim.env.JDTLS_LAUNCHER or "org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar")
+            .. "org.eclipse.equinox.launcher_*.jar"
+             -- .. vim.fn.glob(jdtls_home .. 'org.eclipse.equinox.launcher_*.jar')
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
@@ -26,24 +31,25 @@ return {
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
         '-Dlog.protocol=true', '-Dlog.level=ALL',
-        '-Xmx1g' , "-Xmx4g",
+        '-Xms1g' , "-Xmx4g",
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 --
        "-javaagent:" .. jdtls_home .. "/lombok.jar",
-       "-jar", jdtls_launcher,
+       "-jar",vim.fn.glob( jdtls_launcher),
         --   
         "-configuration", jdtls_config,
       --   
         -- See `data directory configuration` section in the README
-       "-data", vim.env.temp .. "/.jdtls"
+       "-data", vim.env.temp .. "/.jdtls-" .. project_name
+       -- "-data", workspace_dir
     },
 
     --   
     -- This is the default if not provided, you can remove it. Or adjust as needed.
     -- One dedicated LSP server & client will be started per unique root_dir
-    root_dir = require('jdtls.setup').find_root({ 'pom.xml', 'mvnw', 'gradlew' }),
+    root_dir = require('jdtls.setup').find_root({ 'pom.xml', 'mvnw', 'gradlew',"build.gradle", "build.gradle.kts" }),
 
     -- Here you can configure eclipse.jdt.ls specific settings
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
@@ -56,6 +62,24 @@ return {
             rename = { enabled = true },
             eclipse = { downloadSources = true, },
             maven = { downloadSources = true, },
+                       completion = {
+            favoriteStaticMembers = {
+              "org.hamcrest.Matchers.*",
+              "org.hamcrest.CoreMatchers.*",
+              "org.hamcrest.MatcherAssert.assertThat",
+              "org.junit.jupiter.api.Assertions.*",
+              "java.util.Objects.requireNonNull",
+              "java.util.Objects.requireNonNullElse",
+              "org.mockito.Mockito.*"
+            },
+            filteredTypes = {
+        "com.sun.*",
+        "io.micrometer.shaded.*",
+        "java.awt.*",
+        "jdk.*",
+        "sun.*",
+      },
+          },
         }
     },
 
