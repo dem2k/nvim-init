@@ -1,3 +1,5 @@
+-- if true then return {} end
+
 -- https://github.com/nvim-telescope/telescope.nvim -- Fuzzy Finder (files, lsp, etc)
 return {
     "nvim-telescope/telescope.nvim",
@@ -6,7 +8,7 @@ return {
     config = function()
         require("telescope").setup({
             defaults = {
-                layout_strategy = "horizontal",
+                -- layout_strategy = "horizontal",
                 layout_config = {
                     width = 0.95,
                     height = 0.85,
@@ -22,21 +24,17 @@ return {
             },
             extensions = {
                 ["ui-select"] = {
+                    -- https://github.com/nvim-telescope/telescope-ui-select.nvim
                     require("telescope.themes").get_cursor {
-                        -- even more opts
+                          layout_config = {
+                            height=18,
+                        },
                     },
 
-                    -- pseudo code / specification for writing custom displays, like the one for "codeactions"
-                    -- specific_opts = {
-                    --   ["kind"] = {
-                    --     make_indexed = function(items) -> indexed_items, width,
-                    --     make_displayer = function(widths) -> displayer
-                    --     make_display = function(displayer) -> function(e)
-                    --     make_ordinal = function(e) -> string
-                    --   },
-                    --   -- for example to disable the custom builtin "codeactions" display do the following
-                    --   codeactions = false,
-                    -- }
+                     -- require("telescope.themes").get_dropdown {
+                     --    -- even more opts
+                     --    },
+
                 }
             }
         })
