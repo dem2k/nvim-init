@@ -59,9 +59,17 @@ vim.keymap.set("n", "vv", "V")
 
 -- i mostly use this with iw...
 vim.keymap.set("n", "cw", "ciw")
-vim.keymap.set("n", "vw", "viw")
-vim.keymap.set("n", "yw", "yiw")
+-- vim.keymap.set("n", "cq", "ciq")
+-- vim.keymap.set("n", "cb", "cib")
 vim.keymap.set("n", "dw", "diw")
+-- vim.keymap.set("n", "dq", "diq")
+-- vim.keymap.set("n", "db", "dib")
+vim.keymap.set("n", "vw", "viw")
+-- vim.keymap.set("n", "vq", "viq")
+-- vim.keymap.set("n", "vb", "vib")
+vim.keymap.set("n", "yw", "yiw")
+-- vim.keymap.set("n", "yq", "yiq")
+-- vim.keymap.set("n", "yb", "yib")
 
 -- 
 vim.keymap.set("n", "<leader>n", ":%s///gn<cr>",{desc="Count search Matches"})
