@@ -5,7 +5,7 @@ return {
         require("which-key").setup({
             require("which-key").register({
                 ["<leader>ö"] = { name = "My Commands..." },
-                ["<leader>ös"] = { name = "Save Buffer..." },
+                -- ["<leader>ös"] = { name = "Save Buffer..." },
                 ["<leader>f"] = { name = "Telescope..." },
                 ["<leader>s"] = { name = "Save Buffer..." },
                 ["<leader>b"] = { name = "Buffer..." },
