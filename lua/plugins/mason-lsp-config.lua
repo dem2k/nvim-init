@@ -30,27 +30,28 @@ return {
                 end
 
                 keymap("gD", ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration")
-                keymap("gd", require("telescope.builtin").lsp_definitions, "Goto Definition") -- keymap("gd", ":lua vim.lsp.buf.definition()<cr>", "Goto Definition")
-                keymap("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation") -- keymap("gI", ":lua vim.lsp.buf.implementation()<cr>", "Goto Implementation")
-                keymap("gr", require("telescope.builtin").lsp_references, "Goto References") -- keymap("gr", ":lua vim.lsp.buf.references()<cr>", "Goto References")
+                keymap("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")              -- keymap("gd", ":lua vim.lsp.buf.definition()<cr>", "Goto Definition")
+                keymap("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")      -- keymap("gI", ":lua vim.lsp.buf.implementation()<cr>", "Goto Implementation")
+                keymap("gr", require("telescope.builtin").lsp_references, "Goto References")               -- keymap("gr", ":lua vim.lsp.buf.references()<cr>", "Goto References")
                 keymap("<leader>lo", require("telescope.builtin").lsp_type_definitions, "Type Definition") -- keymap("go", ":lua vim.lsp.buf.type_definition()<cr>", "Type Definition")
                 keymap("<leader>ls", ":lua vim.lsp.buf.signature_help()<cr>", "Signature Help")
                 keymap("<leader>lr", ":lua vim.lsp.buf.rename()<cr>", "Rename")
                 keymap("<leader>lj", ":lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic Message")
                 keymap("<leader>lk", ":lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic Message")
-                keymap('<leader>le', ":lua vim.diagnostic.open_float()<cr>", "Show Diagnostic Error Message" )
+                keymap('<leader>le', ":lua vim.diagnostic.open_float()<cr>", "Show Diagnostic Error Message")
                 keymap("<leader>lq", require("telescope.builtin").diagnostics, "All Diagnostic Messages") -- keymap('<leader>lq', ":lua vim.diagnostic.setloclist()<cr>", "Open Diagnostic Quickfix List" )
-                keymap("<leader>lh", ":lua vim.lsp.buf.hover()<cr>",  "Hover Documentation" )
-                keymap("<leader>lf", ":lua vim.lsp.buf.format({})<cr>",  "Format current Buffer" )
+                keymap("<leader>lh", ":lua vim.lsp.buf.hover()<cr>", "Hover Documentation")
+                keymap("<leader>lf", ":lua vim.lsp.buf.format({})<cr>", "Format current Buffer")
                 keymap("<leader>ld", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
                 keymap("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
-                vim.keymap.set({ "n", "v" }, "<leader>ll", ":lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "LSP: Code Action..." })
+                vim.keymap.set({ "n", "v" }, "<leader>ll", ":lua vim.lsp.buf.code_action()<cr>",
+                    { buffer = event.buf, desc = "LSP: Code Action..." })
 
-    keymap( '<leader>lx1', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', "add wsp fldr")
-      keymap( '<leader>lx2', ':lua vim.lsp.buf.remove_workspace_folder()<CR>', "rm wsp fldr")
-      keymap( '<leader>lx3', ':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', "list wsp fldr")
-    keymap( '<leader>lx5', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', "show line diagn")
-   
+                keymap('<leader>lx1', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', "add wsp fldr")
+                keymap('<leader>lx2', ':lua vim.lsp.buf.remove_workspace_folder()<CR>', "rm wsp fldr")
+                keymap('<leader>lx3', ':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+                    "list wsp fldr")
+                keymap('<leader>lx5', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', "show line diagn")
             end
         })
 
