@@ -39,13 +39,18 @@ return {
                 keymap("<leader>lj", ":lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic Message")
                 keymap("<leader>lk", ":lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic Message")
                 keymap('<leader>le', ":lua vim.diagnostic.open_float()<cr>", "Show Diagnostic Error Message" )
-                keymap("<leader>lx", require("telescope.builtin").diagnostics, "All Diagnostic Messages") -- keymap('<leader>lq', ":lua vim.diagnostic.setloclist()<cr>", "Open Diagnostic Quickfix List" )
-                keymap("<leader>lq", require("telescope.builtin").loclist, "Open Diagnostic Quickfix List") -- keymap('<leader>lq', ":lua vim.diagnostic.setloclist()<cr>", "Open Diagnostic Quickfix List" )
+                keymap("<leader>lq", require("telescope.builtin").diagnostics, "All Diagnostic Messages") -- keymap('<leader>lq', ":lua vim.diagnostic.setloclist()<cr>", "Open Diagnostic Quickfix List" )
                 keymap("<leader>lh", ":lua vim.lsp.buf.hover()<cr>",  "Hover Documentation" )
                 keymap("<leader>lf", ":lua vim.lsp.buf.format({})<cr>",  "Format current Buffer" )
                 keymap("<leader>ld", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
                 keymap("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
                 vim.keymap.set({ "n", "v" }, "<leader>ll", ":lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "LSP: Code Action..." })
+
+    keymap( '<leader>lx1', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', "add wsp fldr")
+      keymap( '<leader>lx2', ':lua vim.lsp.buf.remove_workspace_folder()<CR>', "rm wsp fldr")
+      keymap( '<leader>lx3', ':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', "list wsp fldr")
+    keymap( '<leader>lx5', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', "show line diagn")
+   
             end
         })
 
@@ -108,6 +113,7 @@ return {
         }) -- end powershell
 
         -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
+        local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
         local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
         local jdtls_config = jdtls_home .. "/config_win"
         local jdtls_launcher = jdtls_home .. "/plugins/org.eclipse.equinox.launcher_*.jar"
@@ -136,7 +142,7 @@ return {
                 "-jar", vim.fn.glob(jdtls_launcher),
                 "-configuration", jdtls_config,
                 -- "-data", (vim.fs.dirname(vim.fs.find({"pom.xml"}, { upward = true })[1]) or vim.fn.getcwd()) .. "/.jdtls"
-                "-data", vim.env.temp .. "/.jdtls"
+                "-data", vim.env.TEMP .. "/.jdtls-" .. project_name
             },
             settings = {
                 java = {
