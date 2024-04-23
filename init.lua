@@ -48,6 +48,25 @@ require("lazy").setup({
     colorscheme = { "tokyonight-night" },
   },
   checker = { enabled = false }, -- automatically check for plugin updates
+  change_detection = {
+        enabled = false, -- automatically check for config file changes and reload the ui
+        notify = true, -- get a notification when changes are found
+  },
+  performance = {
+    rtp = {
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 })
 
 -- [[ Highlight on yank ]] -- See `:help vim.highlight.on_yank()`
