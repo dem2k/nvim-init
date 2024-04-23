@@ -89,7 +89,8 @@ return {
             -- bundle_path = pwsh_lsp_path,
             settings = {
                 powershell = {
-                    codeFormatting = { Preset = 'OTBS' },
+                    -- codeFormatting = { Preset = 'OTBS' },
+                    codeFormatting = { settingsPath = vim.fn.stdpath("data") .. "/PSCodeFormatting.psd1" },
                     scriptAnalysis = { settingsPath = vim.fn.stdpath("data") .. "/PSScriptAnalyzerSettings.psd1" },
                 }
             },
