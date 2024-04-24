@@ -8,8 +8,9 @@ return {
         -- require("mini.animate").setup({})
         require("mini.tabline").setup({})
         require("mini.comment").setup({})
-        require("mini.pairs").setup({})
+        -- require("mini.pairs").setup({})
         -- require("mini.jump2d").setup({})  -- using hop?
+
         require("mini.jump").setup({
             delay = {
                 -- Delay between jump and highlighting all possible jumps
@@ -18,6 +19,7 @@ return {
                 idle_stop = 60000,
             }
         })
+
         require("mini.surround").setup({
             mappings = {
                 add = 'sa',            -- Add surrounding in Normal and Visual modes
@@ -32,7 +34,14 @@ return {
             },
             search_method = 'cover_or_next',
         })
-        require('mini.indentscope').setup({ symbol = '┊', delay = 250, })
+
+        -- -- it make nvim very slow...
+        -- require('mini.indentscope').setup({
+        --     draw = {
+        --         delay = 1000, -- Delay (in ms) between event and start of drawing scope indicator
+        --     },
+        --     symbol = '┊',
+        -- })
 
         require("mini.move").setup({
             mappings = {
