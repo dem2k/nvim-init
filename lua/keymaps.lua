@@ -23,7 +23,7 @@ vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Wrap/unwrap Lin
 vim.keymap.set("n", "<leader>öö", ':let @a=@+ | let @+=@" | let @"=@a<cr>', { desc = "Swap System Clipboard and Yank Register" })
 vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>", { desc = "Tidy XML" })
 vim.keymap.set("n", "<leader>öp", 'viq"*p', { desc = "Put System Clipboard inside Quotes" })
-vim.keymap.set("n", "<leader>öh", ":set invlist<cr>", { desc = "Show/hide all Characters" })
+vim.keymap.set("n", "<leader>öh", ":set invlist<cr>", { desc = "Show/hide Whitespaces" })
 
 vim.keymap.set("n", "<leader>su", ":set fileencoding=UTF-8 | write<cr>", { desc = "Save Buffer as UTF-8" })
 vim.keymap.set("n", "<leader>sl", ":set fileencoding=ISO-8859-15 | write<cr>", { desc = "Save Buffer as ISO-8859-15" })
