@@ -8,7 +8,7 @@ return {
         local Terminal = require("toggleterm.terminal").Terminal
 
         local pwsh     = Terminal:new({
-            cmd = "pwsh.exe",
+            cmd = "pwsh",
             direction = "tab",
             float_opts = {
                 -- border = "single",
@@ -24,10 +24,10 @@ return {
         })
 
         local lazygit  = Terminal:new({
-            cmd = "lazygit.exe",
+            cmd = "lazygit",
             -- hidden = true,
             -- dir = "git_dir",
-            direction = "tab",
+            direction = "float",
             float_opts = {
                 -- border = "single",
             },
@@ -44,7 +44,7 @@ return {
 
         local pwshrun  = Terminal:new({
             -- cmd = "pwsh.exe -command 'pwd ; pause ; & " .. vim.fn.expand('%:p') .. "'",
-            cmd = "pwsh.exe -command 'pwd;pause;" .. vim.fn.expand('%:p') .. "'",
+            cmd = "pwsh -command 'pwd;pause;" .. vim.fn.expand('%:p') .. "'",
             -- hidden = true,
             -- dir = "git_dir",
             -- direction = "tab",

@@ -3,9 +3,9 @@ vim.cmd("language en_US")  -- vim.opt.language = "en_US"              -- Set the
 vim.opt.compatible = false -- Disable compatibility mode. You want Vim, not vi. We set it explicitely to make our position clear!
 vim.cmd [[filetype plugin indent on]]   -- Load plugins according to detected filetype.
 
-vim.opt.wrap = false                 -- Disable line wrap
+vim.opt.wrap = false                                -- Disable line wrap
 vim.opt.linebreak = true
-vim.opt.clipboard = "unnamedplus"    -- Sync with system clipboard
+-- vim.opt.clipboard = "unnamedplus"                   -- Sync with system clipboard
 vim.opt.completeopt = { "menu", "menuone", "noselect" } -- https://neovim.io/doc/user/options.html#'completeopt'
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "folds" }
 

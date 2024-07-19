@@ -55,34 +55,36 @@ return {
             end
         })
 
-        lspconfig.lua_ls.setup({
-            settings = {
-                Lua = {
-                    completion = {
-                        callSnippet = "Replace"
-                    },
-                    runtime = {
-                        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                        version = "LuaJIT",
-                    },
-                    diagnostics = {
-                        -- Get the language server to recognize the `vim` global
-                        globals = { "vim", },
-                    },
-                    workspace = {
-                        -- Make the server aware of Neovim runtime files
-                        checkThirdParty = false,
-                        library = vim.api.nvim_get_runtime_file("", false),
-                    },
-                    -- Do not send telemetry data containing a randomized but unique identifier
-                    telemetry = {
-                        enable = false,
-                    },
-                }
-            }
-        })
+        -- lspconfig.lua_ls.setup({
+        --     settings = {
+        --         Lua = {
+        --             completion = {
+        --                 callSnippet = "Replace"
+        --             },
+        --             runtime = {
+        --                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        --                 version = "LuaJIT",
+        --             },
+        --             diagnostics = {
+        --                 -- Get the language server to recognize the `vim` global
+        --                 globals = { "vim", },
+        --             },
+        --             workspace = {
+        --                 -- Make the server aware of Neovim runtime files
+        --                 checkThirdParty = false,
+        --                 library = vim.api.nvim_get_runtime_file("", false),
+        --             },
+        --             -- Do not send telemetry data containing a randomized but unique identifier
+        --             telemetry = {
+        --                 enable = false,
+        --             },
+        --         }
+        --     }
+        -- })
 
         -- powershell
+        local pwsh_home = vim.env.SCOOP or "/usr/lib/pwsh/default"
+        local pwsh_bin = vim.env.PWSH_BIN or (pwsh_home .. "/pwsh")
         local pwsh_lsp_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
         lspconfig.powershell_es.setup({
             -- shell = "powershell.exe",
@@ -94,11 +96,11 @@ return {
                     scriptAnalysis = { settingsPath = vim.fn.stdpath("data") .. "/PSScriptAnalyzerSettings.psd1" },
                 }
             },
-            cmd = { vim.env.SCOOP .. "/apps/pwsh/current/pwsh.exe", "-NoLogo", "-NoProfile", "-Command",
+            cmd = { pwsh_bin, "-NoLogo", "-NoProfile", "-Command",
                 -- "& " ..
                 pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
                 .. " -BundledModulesPath '" .. pwsh_lsp_path .. "'"
-                .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
+--                .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
                 .. " -SessionDetailsPath '" .. vim.fn.stdpath("data") .. "/powershell.session.json'"
                 .. " -FeatureFlags @() -AdditionalModules @()"
                 -- .. " -HostName 'nvim' -HostProfileId 'nvim' -HostVersion '1.0.0' -Stdio"
@@ -116,13 +118,16 @@ return {
 
         -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
         local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+        local java_home = vim.env.JAVA_HOME or "/usr/lib/jvm/default"
         local jdtls_home = vim.env.JDTLS_HOME or (vim.fn.stdpath("data") .. "/mason/packages/jdtls")
         local jdtls_config = jdtls_home .. "/config_win"
         local jdtls_launcher = jdtls_home .. "/plugins/org.eclipse.equinox.launcher_*.jar"
+        local data_tmp = vim.env.TEMP or "/tmp"
+
         lspconfig.jdtls.setup {
             cmd = {
                 --
-                vim.env.JAVA_HOME .. "/bin/java.exe",
+                java_home .. "/bin/java",
                 "-Declipse.application=org.eclipse.jdt.ls.core.id1",
                 "-Dosgi.bundles.defaultStartLevel=4",
                 "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -144,7 +149,7 @@ return {
                 "-jar", vim.fn.glob(jdtls_launcher),
                 "-configuration", jdtls_config,
                 -- "-data", (vim.fs.dirname(vim.fs.find({"pom.xml"}, { upward = true })[1]) or vim.fn.getcwd()) .. "/.jdtls"
-                "-data", vim.env.TEMP .. "/.jdtls-" .. project_name
+                "-data", data_tmp .. "/.jdtls-" .. project_name
             },
             settings = {
                 java = {
@@ -154,7 +159,6 @@ return {
                     rename = { enabled = true },
                     eclipse = { downloadSources = true, },
                     maven = { downloadSources = true, },
-
                 }
             },
             init_options = {

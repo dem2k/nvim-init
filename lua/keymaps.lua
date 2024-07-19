@@ -16,19 +16,20 @@ vim.keymap.set("i", "<c-s>", "<esc><cmd>w<cr>a", { desc = "Save Buffer" })
 
 -- vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume" })
 vim.keymap.set("n", "<leader>e",  ":NeoTreeFloatToggle<cr>", { desc = "Open File Explorer" })
-
-vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Wrap/unwrap Lines" })
+vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Toggle wrap Lines" })
 -- vim.keymap.set("n", "<leader>öy", ':let @+ = @"<cr>', { desc = "Put yanked Text into System Clipboard" })
 -- vim.keymap.set("n", "<leader>öc", ':let @" = @+<cr>', { desc = "Put System Clipboard into unnamed Register" })
 vim.keymap.set("n", "<leader>öö", ':let @a=@+ | let @+=@" | let @"=@a<cr>', { desc = "Swap System Clipboard and Yank Register" })
 vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>", { desc = "Tidy XML" })
-vim.keymap.set("n", "<leader>öp", 'vi""*p', { desc = "Put System Clipboard inside Quotes" })
-vim.keymap.set("n", "<leader>öh", ":set invlist<cr>", { desc = "Show/hide Whitespaces" })
+vim.keymap.set("n", "<leader>öv", 'vi""*p', { desc = "Put System Clipboard inside Quotes" })
 
 vim.keymap.set("n", "<leader>su", ":set fileencoding=UTF-8 | write<cr>", { desc = "Save Buffer as UTF-8" })
 vim.keymap.set("n", "<leader>sl", ":set fileencoding=ISO-8859-15 | write<cr>", { desc = "Save Buffer as ISO-8859-15" })
 vim.keymap.set("n", "<leader>sd", ":set ff=dos | write<cr>", { desc = "Change Line Endings to DOS" })
 vim.keymap.set("n", "<leader>sx", ":set ff=unix | write<cr>", { desc = "Change Line Endings to UNIX" })
+
+-- show unsichtbare zeichen?
+vim.keymap.set("n", "<leader>öp", ":set invlist<cr>", { desc = "Toggle show/hide all Characters" })
 
 -- x löscht nicht ins clipboard
 vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change Clipboard" })
