@@ -55,66 +55,66 @@ return {
             end
         })
 
-        -- lspconfig.lua_ls.setup({
-        --     settings = {
-        --         Lua = {
-        --             completion = {
-        --                 callSnippet = "Replace"
-        --             },
-        --             runtime = {
-        --                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        --                 version = "LuaJIT",
-        --             },
-        --             diagnostics = {
-        --                 -- Get the language server to recognize the `vim` global
-        --                 globals = { "vim", },
-        --             },
-        --             workspace = {
-        --                 -- Make the server aware of Neovim runtime files
-        --                 checkThirdParty = false,
-        --                 library = vim.api.nvim_get_runtime_file("", false),
-        --             },
-        --             -- Do not send telemetry data containing a randomized but unique identifier
-        --             telemetry = {
-        --                 enable = false,
-        --             },
-        --         }
-        --     }
-        -- })
-
-        -- powershell
-        local pwsh_home = vim.env.SCOOP or "/usr/lib/pwsh/default"
-        local pwsh_bin = vim.env.PWSH_BIN or (pwsh_home .. "/pwsh")
-        local pwsh_lsp_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
-        lspconfig.powershell_es.setup({
-            -- shell = "powershell.exe",
-            -- bundle_path = pwsh_lsp_path,
+        lspconfig.lua_ls.setup({
             settings = {
-                powershell = {
-                    codeFormatting = { Preset = 'OTBS' },
-                    -- codeFormatting = { settingsPath = vim.fn.stdpath("data") .. "/PSCodeFormatting.psd1" },
-                    scriptAnalysis = { settingsPath = vim.fn.stdpath("data") .. "/PSScriptAnalyzerSettings.psd1" },
+                Lua = {
+                    completion = {
+                        callSnippet = "Replace"
+                    },
+                    runtime = {
+                        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                        version = "LuaJIT",
+                    },
+                    diagnostics = {
+                        -- Get the language server to recognize the `vim` global
+                        globals = { "vim", },
+                    },
+                    workspace = {
+                        -- Make the server aware of Neovim runtime files
+                        checkThirdParty = false,
+                        library = vim.api.nvim_get_runtime_file("", false),
+                    },
+                    -- Do not send telemetry data containing a randomized but unique identifier
+                    telemetry = {
+                        enable = false,
+                    },
                 }
-            },
-            cmd = { pwsh_bin, "-NoLogo", "-NoProfile", "-Command",
-                -- "& " ..
-                pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
-                .. " -BundledModulesPath '" .. pwsh_lsp_path .. "'"
---                .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
-                .. " -SessionDetailsPath '" .. vim.fn.stdpath("data") .. "/powershell.session.json'"
-                .. " -FeatureFlags @() -AdditionalModules @()"
-                -- .. " -HostName 'nvim' -HostProfileId 'nvim' -HostVersion '1.0.0' -Stdio"
-                .. " -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio"
-                -- .. " -HostName 'nvim' -HostProfileId 0 -HostVersion '1.0.0' -Stdio"
-            },
-            root_dir = function(fname)
-                return lspconfig.util.root_pattern(".git")(fname) or vim.fn.getcwd()
-            end,
-            on_attach = function(client, bufnr)
-                vim.keymap.set('n', '<Leader>r', ":w | !powershell.exe ./%<cr>",
-                    { buffer = bufnr, desc = "Save and Run Powershell." })
-            end
-        }) -- end powershell
+            }
+        })
+
+--         -- powershell
+--         local pwsh_home = vim.env.SCOOP or "/usr/lib/pwsh/default"
+--         local pwsh_bin = vim.env.PWSH_BIN or (pwsh_home .. "/pwsh")
+--         local pwsh_lsp_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
+--         lspconfig.powershell_es.setup({
+--             -- shell = "powershell.exe",
+--             -- bundle_path = pwsh_lsp_path,
+--             settings = {
+--                 powershell = {
+--                     codeFormatting = { Preset = 'OTBS' },
+--                     -- codeFormatting = { settingsPath = vim.fn.stdpath("data") .. "/PSCodeFormatting.psd1" },
+--                     scriptAnalysis = { settingsPath = vim.fn.stdpath("data") .. "/PSScriptAnalyzerSettings.psd1" },
+--                 }
+--             },
+--             cmd = { pwsh_bin, "-NoLogo", "-NoProfile", "-Command",
+--                 -- "& " ..
+--                 pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
+--                 .. " -BundledModulesPath '" .. pwsh_lsp_path .. "'"
+--                 -- .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
+--                 .. " -SessionDetailsPath '" .. vim.fn.stdpath("data") .. "/powershell.session.json'"
+--                 .. " -FeatureFlags @() -AdditionalModules @()"
+--                 -- .. " -HostName 'nvim' -HostProfileId 'nvim' -HostVersion '1.0.0' -Stdio"
+--                 .. " -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio"
+--                 -- .. " -HostName 'nvim' -HostProfileId 0 -HostVersion '1.0.0' -Stdio"
+--             },
+--             root_dir = function(fname)
+--                 return lspconfig.util.root_pattern(".git")(fname) or vim.fn.getcwd()
+--             end,
+--             on_attach = function(client, bufnr)
+--                 vim.keymap.set('n', '<Leader>r', ":w | !powershell.exe ./%<cr>",
+--                     { buffer = bufnr, desc = "Save and Run Powershell." })
+--             end
+--         }) -- end powershell
 
         -- java, last version of jdtls supports java 11 should be 1.12.0. how to download and install this particular verstion with mason? goddamn!
         local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
