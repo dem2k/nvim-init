@@ -27,7 +27,7 @@ return {
             cmd = "lazygit.exe",
             -- hidden = true,
             -- dir = "git_dir",
-            direction = "tab",
+            direction = "float",
             float_opts = {
                 -- border = "single",
             },

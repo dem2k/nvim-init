@@ -16,7 +16,7 @@ vim.g.netrw_altv         = 1
 vim.g.netrw_winsize      = 25
 
 -- install python and run:  python3.exe -m pip install --user --upgrade pynvim
-vim.g.python3_host_prog  = vim.env.SCOOP .. "/apps/python/current/python.exe"
+vim.g.python3_host_prog  = (vim.env.SCOOP or "c:/scoop") .. "/apps/python/current/python.exe"
 local lazypath           = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({

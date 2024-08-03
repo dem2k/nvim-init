@@ -94,11 +94,11 @@ return {
                     scriptAnalysis = { settingsPath = vim.fn.stdpath("data") .. "/PSScriptAnalyzerSettings.psd1" },
                 }
             },
-            cmd = { vim.env.SCOOP .. "/apps/pwsh/current/pwsh.exe", "-NoLogo", "-NoProfile", "-Command",
+            cmd = { (vim.env.SCOOP or "c:/scoop") .. "/apps/pwsh/current/pwsh.exe", "-NoLogo", "-NoProfile", "-Command",
                 -- "& " ..
                 pwsh_lsp_path .. "/PowerShellEditorServices/Start-EditorServices.ps1"
                 .. " -BundledModulesPath '" .. pwsh_lsp_path .. "'"
-                .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
+                -- .. " -LogLevel 'Diagnostic' -LogPath '" .. vim.fn.stdpath("data") .. "/powershell.log'"
                 .. " -SessionDetailsPath '" .. vim.fn.stdpath("data") .. "/powershell.session.json'"
                 .. " -FeatureFlags @() -AdditionalModules @()"
                 -- .. " -HostName 'nvim' -HostProfileId 'nvim' -HostVersion '1.0.0' -Stdio"
@@ -154,7 +154,6 @@ return {
                     rename = { enabled = true },
                     eclipse = { downloadSources = true, },
                     maven = { downloadSources = true, },
-
                 }
             },
             init_options = {

@@ -5,7 +5,7 @@ vim.cmd [[filetype plugin indent on]]   -- Load plugins according to detected fi
 
 vim.opt.wrap = false                                -- Disable line wrap
 vim.opt.linebreak = true
--- vim.opt.clipboard = "unnamedplus"                   -- Sync with system clipboard
+vim.opt.clipboard = "unnamedplus"                   -- Sync with system clipboard
 vim.opt.completeopt = { "menu", "menuone", "noselect" } -- https://neovim.io/doc/user/options.html#'completeopt'
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "folds" }
 
