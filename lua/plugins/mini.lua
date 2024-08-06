@@ -20,7 +20,7 @@ return {
             }
         })
 
-        -- vim.cmd [[nnoremap s <Nop>]]
+        vim.cmd "nnoremap s <Nop>"
         require("mini.surround").setup({
             -- mappings = {
             --     add = 'sa',            -- Add surrounding in Normal and Visual modes

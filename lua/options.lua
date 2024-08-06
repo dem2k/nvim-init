@@ -86,3 +86,4 @@ vim.opt.listchars = "space:⋅,eol:↴,trail:·,nbsp:◇,tab:→-,extends:▸,pr
 -- vim.cmd[[set backupdir   =$HOME/.vim/files/backup/]]
 -- vim.cmd[[set updatecount =100]]
 -- vim.cmd[[set viminfo     ='100,n$HOME/.vim/files/info/viminfo]]
+
