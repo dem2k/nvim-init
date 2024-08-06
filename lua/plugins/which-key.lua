@@ -16,7 +16,7 @@ return {
             { "<leader>ö", group = "My custom Commands..." },
             -- ["<leader>ös"] = { name = "Save Buffer..." },
             { "<leader>f", group = "Telescope..." },
-            { "<leader>s", group = "Save Buffer..." },
+            -- { "<leader>s", group = "Save Buffer..." },
             { "<leader>b", group = "Buffer..." },
             { "<leader>g", group = "Git..." },
             { "<leader>l", group = "Language server..." },
