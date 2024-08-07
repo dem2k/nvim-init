@@ -66,8 +66,8 @@ vim.opt.expandtab = true       -- Use spaces instead of tabs
 vim.opt.shiftwidth = 4         -- Size of an indent by spaces
 vim.opt.softtabstop = 4        -- Set the value of softtabstop -- vim.cmd [[set softtabstop =4]] -- Tab key indents by 4 spaces.
 
-vim.opt.timeout = true
-vim.opt.timeoutlen = 300
+vim.opt.timeout    = true      -- https://neovim.io/doc/user/options.html#'timeout'
+vim.opt.timeoutlen = 2500      -- Time in milliseconds to wait for a mapped sequence to complete.
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 8                -- Minimum window width
 -- vim.opt.splitkeep = "screen"
@@ -86,3 +86,4 @@ vim.opt.listchars = "space:⋅,eol:↴,trail:·,nbsp:◇,tab:→-,extends:▸,pr
 -- vim.cmd[[set backupdir   =$HOME/.vim/files/backup/]]
 -- vim.cmd[[set updatecount =100]]
 -- vim.cmd[[set viminfo     ='100,n$HOME/.vim/files/info/viminfo]]
+

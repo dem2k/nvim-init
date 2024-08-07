@@ -25,10 +25,10 @@ vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml 
 vim.keymap.set("n", "<leader>öp", 'vi""*p', { desc = "Put System Clipboard inside Quotes" })
 vim.keymap.set("n", "<leader>öh", ":set invlist<cr>", { desc = "Show/hide Whitespaces" })
 
-vim.keymap.set("n", "<leader>su", ":set fileencoding=UTF-8 | write<cr>", { desc = "Save Buffer as UTF-8" })
-vim.keymap.set("n", "<leader>sl", ":set fileencoding=ISO-8859-15 | write<cr>", { desc = "Save Buffer as ISO-8859-15" })
-vim.keymap.set("n", "<leader>sd", ":set ff=dos | write<cr>", { desc = "Change Line Endings to DOS" })
-vim.keymap.set("n", "<leader>sx", ":set ff=unix | write<cr>", { desc = "Change Line Endings to UNIX" })
+vim.keymap.set("n", "<leader>bu", ":set fileencoding=UTF-8 | write<cr>", { desc = "Save Buffer as UTF-8" })
+vim.keymap.set("n", "<leader>bl", ":set fileencoding=ISO-8859-15 | write<cr>", { desc = "Save Buffer as ISO-8859-15" })
+vim.keymap.set("n", "<leader>bd", ":set ff=dos | write<cr>", { desc = "Change Line Endings to DOS" })
+vim.keymap.set("n", "<leader>bx", ":set ff=unix | write<cr>", { desc = "Change Line Endings to UNIX" })
 
 -- x löscht nicht ins clipboard
 vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change Clipboard" })
