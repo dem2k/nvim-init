@@ -74,3 +74,7 @@ vim.keymap.set("n", "yw", "yiw")
 -- 
 vim.keymap.set("n", "<leader>n", ":%s///gn<cr>",{desc="Count search Matches"})
 
+vim.keymap.set("i", "<c-p>", function()
+  require("telescope.builtin").registers()
+end, {remap=true,silent=false,desc="paste registers in insert mode"})
+
