@@ -15,13 +15,15 @@ vim.keymap.set("n", "<c-s>", "<cmd>w<cr>", { desc = "Save Buffer" })
 vim.keymap.set("i", "<c-s>", "<esc><cmd>w<cr>a", { desc = "Save Buffer" })
 
 -- vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume" })
-vim.keymap.set("n", "<leader>e",  ":NeoTreeFloatToggle<cr>", { desc = "Open File Explorer" })
+vim.keymap.set("n", "<leader>e", ":NeoTreeFloatToggle<cr>", { desc = "Open File Explorer" })
 
 vim.keymap.set("n", "<leader>öw", ":set invwrap<cr>", { desc = "Wrap/unwrap Lines" })
 -- vim.keymap.set("n", "<leader>öy", ':let @+ = @"<cr>', { desc = "Put yanked Text into System Clipboard" })
 -- vim.keymap.set("n", "<leader>öc", ':let @" = @+<cr>', { desc = "Put System Clipboard into unnamed Register" })
-vim.keymap.set("n", "<leader>öö", ':let @a=@+ | let @+=@" | let @"=@a<cr>', { desc = "Swap System Clipboard and Yank Register" })
-vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>", { desc = "Tidy XML" })
+vim.keymap.set("n", "<leader>öö", ':let @a=@+ | let @+=@" | let @"=@a<cr>',
+    { desc = "Swap System Clipboard and Yank Register" })
+vim.keymap.set("n", "<leader>öf", ":%!c:/scoop/apps/tidy/current/tidy.exe -xml -raw -indent -quiet -wrap 0<cr>",
+    { desc = "Tidy XML" })
 vim.keymap.set("n", "<leader>öp", 'vi""*p', { desc = "Put System Clipboard inside Quotes" })
 vim.keymap.set("n", "<leader>öh", ":set invlist<cr>", { desc = "Show/hide Whitespaces" })
 
@@ -34,12 +36,12 @@ vim.keymap.set("n", "<leader>bx", ":set ff=unix | write<cr>", { desc = "Change L
 vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change Clipboard" })
 
 -- prev/next tab
-vim.keymap.set("n", "<Tab>", ":bnext<cr>",{desc="Next Tab"})
-vim.keymap.set("n", "<S-Tab>", ":bprev<cr>",{desc="Previous Tab"})
-vim.keymap.set("n", "<leader>bn", ":bnext<cr>",{desc="Next Tab"})
-vim.keymap.set("n", "<leader>bp", ":bprev<cr>",{desc="Previous Tab"})
-vim.keymap.set("n", "<leader>bb", ":b#<cr>",{desc="Last opened Buffer"})
-vim.keymap.set("n", "<leader>bd", ":bdelete<cr>",{desc="Delete current Buffer"})
+vim.keymap.set("n", "<Tab>", ":bnext<cr>", { desc = "Next Tab" })
+vim.keymap.set("n", "<S-Tab>", ":bprev<cr>", { desc = "Previous Tab" })
+vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { desc = "Next Tab" })
+vim.keymap.set("n", "<leader>bp", ":bprev<cr>", { desc = "Previous Tab" })
+vim.keymap.set("n", "<leader>bb", ":b#<cr>", { desc = "Last opened Buffer" })
+vim.keymap.set("n", "<leader>bd", ":bdelete<cr>", { desc = "Delete current Buffer" })
 
 -- vim.keymap.set("n", "<c-v>", "P")
 
@@ -71,10 +73,12 @@ vim.keymap.set("n", "yw", "yiw")
 -- vim.keymap.set("n", "yq", "yiq")
 -- vim.keymap.set("n", "yb", "yib")
 
--- 
-vim.keymap.set("n", "<leader>n", ":%s///gn<cr>",{desc="Count search Matches"})
+--
+vim.keymap.set("n", "<leader>n", ":%s///gn<cr>", { desc = "Count search Matches" })
+vim.keymap.set("n", "<leader>sr", ":%s///gc<left><left><left><left>", { desc = "Search and Replace in Buffer" })
 
 vim.keymap.set("i", "<c-p>", function()
-  require("telescope.builtin").registers()
-end, {remap=true,silent=false,desc="paste registers in insert mode"})
+    require("telescope.builtin").registers()
+    vim.cmd("startinsert")
+end, { remap = true, silent = false, desc = "Paste Registers in Insert Mode" })
 
