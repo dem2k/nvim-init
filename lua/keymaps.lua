@@ -33,7 +33,8 @@ vim.keymap.set("n", "<leader>bd", ":set ff=dos | write<cr>", { desc = "Change Li
 vim.keymap.set("n", "<leader>bx", ":set ff=unix | write<cr>", { desc = "Change Line Endings to UNIX" })
 
 -- x löscht nicht ins clipboard
-vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "x does not change Clipboard" })
+vim.keymap.set({ "n", "v" }, "x",     '"_x', { desc = "x does not change Clipboard" })
+vim.keymap.set({ "n", "v" }, "<del>", '"_x', { desc = "x does not change Clipboard" })
 
 -- prev/next tab
 vim.keymap.set("n", "<Tab>", ":bnext<cr>", { desc = "Next Tab" })
